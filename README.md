@@ -5,7 +5,7 @@ bulk csv producer
 
 ### input data file structure:
 
-name;internal_number;dect_number;ftnm_number;phone_model;inbound_number;outbound_number;old_site_prefix;new_site_prefix
+name,internal_number,dect_number,ftmn_number,phone_model,inbound_number,outbound_number,old_site_prefix,new_site_prefix
 
 
 ### input metadata file structure:
@@ -22,7 +22,7 @@ otput_filename_prefix='KRG_'
 
 ### input user_diretory file structure:
 
-old_prefix_int_number;ad_username
+old_prefix_int_number,ad_username
 
 
 
@@ -39,3 +39,13 @@ old_prefix_int_number;ad_username
 	1. prepare pickup groups
 
 action log for further investigation.
+
+### Config parser
+
+import ConfigParser
+
+config = ConfigParser.ConfigParser()
+config.read("config.ini")
+var_a = config.get("myvars", "var_a")
+var_b = config.get("myvars", "var_b")
+var_c = config.get("myvars", "var_c")
