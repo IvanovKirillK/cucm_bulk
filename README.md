@@ -11,6 +11,29 @@ name;internal_number;dect_number;ftnm_number;phone_model;inbound_number;outbound
 ### input metadata file structure:
 
 site_description="/МосОбл"
+
 dn_partition='Pt_Internal'
+
 dp_prefix='DP_Center_50_MosObl_EP_'
+
 pt_prefix='PT_Center_50_MosObl_PSTN_AON_'
+
+otput_filename_prefix='KRG_'
+
+### input user_diretory file structure:
+
+old_prefix_int_number;ad_username
+
+
+
+
+## Flow
+
+1. check input files exist
+1. check input file structure
+1. user input for step selection:
+	1. prepare dummy phone upload
+	1. prepare user_update and line_appearence
+	1. prepare rd and rdp
+	1. prepare translation and transformation patterns
+	
