@@ -32,8 +32,10 @@ old_prefix_int_number;ad_username
 1. check input files exist
 1. check input file structure
 1. user input for step selection:
-	1. prepare dummy phone upload
+	1. prepare dummy phone upload diveded by phone model
 	1. prepare user_update and line_appearence
 	1. prepare rd and rdp
 	1. prepare translation and transformation patterns
-	
+	1. prepare pickup groups
+
+action log for further investigation.
