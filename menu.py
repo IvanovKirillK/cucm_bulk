@@ -1,0 +1,30 @@
+menu = {}
+menu['1']="Construct phones files."
+menu['2']="Construct user_update and line_appearance files."
+menu['3']="Construct RD and RDP files"
+menu['4']="Construct translation and transformation files"
+menu['5']="Construct pickup group files"
+menu['0']="Exit"
+
+while True:
+    options=menu.keys()
+    sorted(options)
+    for entry in options:
+      print(entry, menu[entry])
+
+    selection=input("Please Select:")
+    if selection =='1':
+        print("Constructing phones files...")
+    elif selection == '2':
+        print("Constructing user_update and line_appearance files...")
+    elif selection == '3':
+        print("Constructing RD and RDP files...")
+    elif selection == '4':
+        print("Constructing translation and transformation files...")
+    elif selection == '5':
+        print("Constructing pickup group files...")
+    elif selection == '0':
+        print("Goodbuy!")
+        break
+    else:
+        print("Unknown Option Selected!")
