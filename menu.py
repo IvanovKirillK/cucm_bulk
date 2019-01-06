@@ -1,3 +1,5 @@
+import input_data_parser
+
 menu = {}
 menu['1']="Construct phones files."
 menu['2']="Construct user_update and line_appearance files."
@@ -15,6 +17,10 @@ while True:
     selection=input("Please Select:")
     if selection =='1':
         print("Constructing phones files...")
+        try:
+            input_data_parser.import_data_parse()
+        except Exception:
+            print("Exception:")
     elif selection == '2':
         print("Constructing user_update and line_appearance files...")
     elif selection == '3':
