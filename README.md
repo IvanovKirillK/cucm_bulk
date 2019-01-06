@@ -7,6 +7,23 @@ bulk csv producer
 
 name,internal_number,dect_number,ftmn_number,phone_model,inbound_number,outbound_number,old_site_prefix,new_site_prefix
 
+name = notnull
+
+internal_number = notnull
+
+dect_number = null
+
+ftmn_number = null
+
+phone_model = notnull
+
+inbound_number = null
+
+outbound_number = null
+
+old_prfix = notnull
+
+new_prefix = notnull
 
 ### input metadata file structure:
 
