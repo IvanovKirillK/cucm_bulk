@@ -19,8 +19,8 @@ while True:
         print("Constructing phones files...")
         try:
             input_data_parser.import_data_parse()
-        except Exception:
-            print("Exception:")
+        except Exception as e:
+            print(e)
     elif selection == '2':
         print("Constructing user_update and line_appearance files...")
     elif selection == '3':
