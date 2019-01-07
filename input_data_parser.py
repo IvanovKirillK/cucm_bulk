@@ -11,6 +11,8 @@ pt_prefix = config.get("vars", "pt_prefix")
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 default_site_operator = config.get("vars", "default_site_operator")
 
+model_list = ['7811', '7821', '8851']
+
 
 def check_full_name(name):
     try:
@@ -43,15 +45,34 @@ def check_code(code):
         print('Check names in input data ' + e)
 
 
-def write_output():
-    name = output_filename_prefix + 'phones'+'.csv'
-    filename = '.\\output\\' + name
-    file = open(filename, 'w')
-    writecsv = csv.writer(file, delimiter=',')
-    writecsv.writerow(['MAC ADDRESS','DESCRIPTION','DEVICE POOL','OWNER USER ID','LINE DESCRIPTION  1',
+def write_output_header():
+    for model in model_list:
+        name = output_filename_prefix + 'phones_' + model + '.csv'
+        filename = '.\\output\\' + name
+        file = open(filename, 'w', encoding='utf-8-sig', newline='')
+        writecsv = csv.writer(file, delimiter=',')
+        writecsv.writerow(['MAC ADDRESS','DESCRIPTION','DEVICE POOL','OWNER USER ID','LINE DESCRIPTION  1',
                       'ALERTING NAME  1','ASCII ALERTING NAME  1','DIRECTORY NUMBER  1','FORWARD ALL DESTINATION  1',
                       'DISPLAY  1','ASCII DISPLAY  1','LINE TEXT LABEL  1'])
 
+
+def write_output(mac_address, description, device_pool, owner_user_id, line_description, alerting_name,
+                 ascii_alerting_name, directory_number, forward_all_destination, display, asci_diaplay, line_text_label, model):
+    name = output_filename_prefix + 'phones_' + model + '.csv'
+    filename = '.\\output\\' + name
+    file = open(filename, 'a', encoding='utf-8-sig', newline='')
+    writecsv = csv.writer(file, delimiter=',')
+    writecsv.writerow([mac_address,description,device_pool,owner_user_id,line_description,alerting_name,
+                       ascii_alerting_name,directory_number,forward_all_destination,display,asci_diaplay,line_text_label])
+    print([mac_address,description,device_pool,owner_user_id,line_description,alerting_name,
+                       ascii_alerting_name,directory_number,forward_all_destination,display,asci_diaplay,line_text_label])
+
+def write_unassociated_dn(row):
+    name = output_filename_prefix + 'unassociated_dn'+'.csv'
+    filename = '.\\output\\' + name
+    file = open(filename, 'a', encoding='utf-8-sig', newline='')
+    writecsv = csv.writer(file, delimiter=',')
+    writecsv.writerow(row)
 
 def get_initials(namelist):
     if namelist[2].isdigit():
@@ -116,19 +137,20 @@ def get_operator_name(number, list_codes):
 
 
 def get_ad_user(short_number, user_list):
+    ad_user = None
     for user in user_list:
-        if user.startswith('\t') or user.startswith('\n'):
-            continue
+        temp_list = user.split('\t')
+        if temp_list[0] == short_number:
+            ad_user = temp_list[1].rstrip('\n')
         else:
-            if user.startswith(short_number):
-                ad_user = user.split('\t')
-                return ad_user[1].rstrip('\n')
-            else:
-                ad_user = None
-                return ad_user
+            continue
+    return ad_user
 
 
 def import_data_parse():
+    count_7811 = 0
+    count_7821 = 0
+    count_8851 = 0
     filename = ".\\data\\input_data.csv"
     file = open(filename, "r")
     readcsv = csv.reader(file, delimiter=',')
@@ -151,6 +173,8 @@ def import_data_parse():
         for row in reader:
             user_list.append(row)
 
+    write_output_header()
+
     for row in readcsv:
         if row[0] == 'name':
             continue
@@ -159,7 +183,9 @@ def import_data_parse():
             check_internal_number(row[1])
             check_code(row[7])
             check_code(row[8])
-            description = get_initials(namelist) + ' ' + site_description
+            initials = get_initials(namelist)
+            mac_address=''
+            description = initials + ' ' + site_description
             out_number = (get_normalized_number(row[6]))
             if out_number[:1] == '4':
                 list_codes = list_codes_4
@@ -168,9 +194,36 @@ def import_data_parse():
             operator_name = (translit(get_operator_name(out_number,list_codes), 'ru', reversed=True))
             device_pool = dp_prefix + operator_name
             short_number = row[7] + row[1]
-            print(get_ad_user(short_number, user_list))
+            owner_user_id = (get_ad_user(short_number, user_list))
+            if owner_user_id is None:
+                write_unassociated_dn(row)
+                continue
+            line_description=initials
+            alerting_name=initials
+            asci_diaplay=ascii_alerting_name=(translit(initials, 'ru', reversed=True))
+            directory_number=row[8]+row[1]
+            forward_all_destination='###'+row[1]
+            display=initials
+            line_text_label=row[1].rstrip('\n')
+            write_output(mac_address, description, device_pool, owner_user_id, line_description, alerting_name,
+                         ascii_alerting_name, directory_number, forward_all_destination, display, asci_diaplay,
+                         line_text_label, row[4])
+            if row[4] == '7811':
+                count_7811 += 1
+            if row[4] == '7821':
+                count_7821 += 1
+            if row[4] == '8851':
+                count_8851 += 1
+
+
+    print('\n')
+    print(30 * '#')
+    print('Done!, Check the output directory')
+    print('total: 7811 ' + str(count_7811) + ' phones')
+    print('total: 7821 ' + str(count_7821) + ' phones')
+    print('total: 8851 ' + str(count_8851) + ' phones')
+    print(30 * '#')
+    print('\n')
 
 
 
-
-    #write_output()
