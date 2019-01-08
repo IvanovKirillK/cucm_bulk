@@ -1,16 +1,17 @@
 import glob
 import csv
 import configparser
+from tasks import check_file_exists
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 
 
-def check_file_exists(full_name):
-    try:
-        handler = open(full_name, 'r')
-    except FileNotFoundError as e:
-        print('File ' + full_name + ' not found', e)
+# def check_file_exists(full_name):
+#     try:
+#         handler = open(full_name, 'r')
+#     except FileNotFoundError as e:
+#         print('File ' + full_name + ' not found', e)
 
 
 def get_containing_row(short_number):
@@ -107,9 +108,9 @@ def worker():
     count_la = 0
     count_unassociated = 0
     for file in (glob.glob('.\\output\\*_phone*')):
-        check_file_exists(file)
+        check_file_exists.check_file_exists(file)
     for file in (glob.glob('.\\data\\*Export_phones*')):
-        check_file_exists(file)
+        check_file_exists.check_file_exists(file)
     write_update_users_header()
     write_line_appearence_header()
 

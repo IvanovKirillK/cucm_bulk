@@ -1,5 +1,6 @@
 import input_data_parser
 import update_user
+import rd_rdp
 
 menu = {}
 menu['1']="Construct phones files."
@@ -30,6 +31,10 @@ while True:
             print(e)
     elif selection == '3':
         print("Constructing RD and RDP files...")
+        try:
+            rd_rdp.worker()
+        except Exception as e:
+            print(e)
     elif selection == '4':
         print("Constructing translation and transformation files...")
     elif selection == '5':
