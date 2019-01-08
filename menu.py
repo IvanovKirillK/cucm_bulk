@@ -1,4 +1,5 @@
 import input_data_parser
+import update_user
 
 menu = {}
 menu['1']="Construct phones files."
@@ -23,6 +24,10 @@ while True:
             print(e)
     elif selection == '2':
         print("Constructing user_update and line_appearance files...")
+        try:
+            update_user.worker()
+        except Exception as e:
+            print(e)
     elif selection == '3':
         print("Constructing RD and RDP files...")
     elif selection == '4':
