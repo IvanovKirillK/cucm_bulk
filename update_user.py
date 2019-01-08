@@ -32,6 +32,22 @@ def write_unassociated_users(row):
     writecsv.writerow(row)
 
 
+def write_line_appearence_header():
+    name = output_filename_prefix + 'line_appearence' + '.csv'
+    filename = '.\\output\\' + name
+    file = open(filename, 'w', encoding='utf-8-sig', newline='')
+    writecsv = csv.writer(file, delimiter=',')
+    writecsv.writerow(['User ID', 'Device', 'Directory Number', 'Partition'])
+
+
+def write_line_appearence(user_id, device, short_number, partition):
+    name = output_filename_prefix + 'line_appearence' + '.csv'
+    filename = '.\\output\\' + name
+    file = open(filename, 'a', encoding='utf-8-sig', newline='')
+    writecsv = csv.writer(file, delimiter=',')
+    writecsv.writerow([user_id, device, short_number, partition])
+
+
 def write_update_users_header():
     name = output_filename_prefix + 'Update_Users' + '.csv'
     filename = '.\\output\\' + name
@@ -49,7 +65,7 @@ def write_update_users_header():
                        'USER PROFILE', 'ASSIGNED PRESENCE SERVER'])
 
 
-def write_output(user_id, pin, title, controlled_device):
+def write_update_users(user_id, pin, title, controlled_device):
     manager_user_id = department = default_profile = user_locale = password = telephone_number = mobile_number = \
         home_number = pager_numer = primary_extension = associated_pc = ipcc_extension = mail_id = presence_group = \
         subscribe_calling_search_space = digest_credentials = remote_destination_limit = \
@@ -88,12 +104,14 @@ def write_output(user_id, pin, title, controlled_device):
 
 def worker():
     count_uu = 0
+    count_la = 0
     count_unassociated = 0
     for file in (glob.glob('.\\output\\*_phone*')):
         check_file_exists(file)
     for file in (glob.glob('.\\data\\*Export_phones*')):
         check_file_exists(file)
     write_update_users_header()
+    write_line_appearence_header()
 
     with open(glob.glob('.\\data\\*Export_phones*')[0], mode='r', encoding="utf8") as csv_file:
         reader = csv.reader(csv_file)
@@ -103,8 +121,10 @@ def worker():
                 user_id = phone_record[3]
                 title = str(row[4]) + ' in ' + str(row[5])
                 device_name = row[0]
-                write_output(user_id, row[4], title, device_name)
+                write_update_users(user_id, row[4], title, device_name)
                 count_uu += 1
+                write_line_appearence(user_id, device_name, row[4], row[5])
+                count_la += 1
             else:
                 write_unassociated_users(row)
                 count_unassociated += 1
@@ -113,6 +133,7 @@ def worker():
     print(30 * '#')
     print('Done!, Check the output directory')
     print('total: update_users ' + str(count_uu) + ' records')
+    print('total: line_appearance ' + str(count_la) + ' records')
     print('total: unassociated_users ' + str(count_unassociated) + ' records')
     print(30 * '#')
     print('\n')
