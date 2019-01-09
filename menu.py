@@ -8,6 +8,7 @@ menu['2']="Construct user_update and line_appearance files."
 menu['3']="Construct RD and RDP files"
 menu['4']="Construct translation and transformation files"
 menu['5']="Construct pickup group files"
+menu['6']="Backup input and output files"
 menu['0']="Exit"
 
 # TODO print file names for user to check
@@ -40,6 +41,8 @@ while True:
         print("Constructing translation and transformation files...")
     elif selection == '5':
         print("Constructing pickup group files...")
+    elif selection == '9':
+        print("Backup...")
     elif selection == '0':
         print("Goodbuy!")
         break
