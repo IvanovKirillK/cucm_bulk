@@ -96,7 +96,7 @@ def worker():
                 count_7821 += 1
             if row[4] == '8851':
                 count_8851 += 1
-
+    #TODO add total number of inbound records
     print('\n')
     print(30 * '#')
     print('Done!, Check the output directory')

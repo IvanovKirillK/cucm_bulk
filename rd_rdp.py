@@ -24,16 +24,28 @@ def worker():
 
     user_list = get_all_ad_users.get_all_ad_users()
 
-    header = ['REMOTE DESTINATION PROFILE NAME', 'DESCRIPTION', 'USER ID', 'DEVICE POOL', 'REROUTING CSS',
+    rdp_header = ['REMOTE DESTINATION PROFILE NAME', 'DESCRIPTION', 'USER ID', 'DEVICE POOL', 'REROUTING CSS',
               'CSS', 'DIRECTORY NUMBER  1', 'ROUTE PARTITION  1', 'LINE DESCRIPTION  1', 'ALERTING NAME  1',
               'ASCII ALERTING NAME  1', 'DISPLAY  1', 'ASCII DISPLAY  1']
 
-    output_filepath = '.\\output\\' + output_filename_prefix + 'RDP' + '.csv'
+    rd_header = ['NAME', 'REMOTE DESTINATION PROFILE', 'TIME ZONE', 'DUAL MODE DEVICE', 'MOBILE SMART CLIENT',
+                 'CTI REMOTE DEVICE', 'DESTINATION', 'ANSWER TOO SOON TIMER', 'ANSWER TOO LATE TIMER',
+                 'DELAY BEFORE RINGING TIMER', 'IS MOBILE PHONE', 'ENABLE MOBILE CONNECT 1', 'DAY OF WEEK 1',
+                 'START TIME 1', 'END TIME 1', 'DAY OF WEEK 2', 'START TIME 2', 'END TIME 2', 'DAY OF WEEK 3',
+                 'START TIME 3', 'END TIME 3', 'DAY OF WEEK 4', 'START TIME 4', 'END TIME 4', 'DAY OF WEEK 5',
+                 'START TIME 5', 'END TIME 5', 'DAY OF WEEK 6', 'START TIME 6', 'END TIME 6', 'DAY OF WEEK 7',
+                 'START TIME 7', 'END TIME 7', 'ACCESS LIST 1', 'ASSOCIATED LINE NUMBER 1', 'ROUTE PARTITION 1',
+                 'MOBILITY PROFILE', 'SINGLE NUMBER REACH VOICEMAIL POLICY', 'DIAL-VIA-OFFICE REVERSE VOICEMAIL POLICY']
+
+    output_rdp_filepath = '.\\output\\' + output_filename_prefix + 'RDP' + '.csv'
+    output_rd_filepath = '.\\output\\' + output_filename_prefix + 'RD' + '.csv'
     output_filepath_to_check = '.\\output\\' + output_filename_prefix + 'RDP_unresolved' + '.csv'
     count_rdp = 0
+    count_rd = 0
     count_unresolved_rdp = 0
 
-    write_header.write_header(output_filepath, header)
+    write_header.write_header(output_rdp_filepath, rdp_header)
+    write_header.write_header(output_rd_filepath, rd_header)
 
     filename = ".\\data\\input_data.csv"
     file = open(filename, 'r')
@@ -47,8 +59,13 @@ def worker():
                 initials = get_initials.get_initials(namelist)
                 if row[2] != '':
                     rdp_profile_name = 'RDP_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_dect'
+                    rd_name = 'RD_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_dect'
+                    destination = row[2]
                 if row[3] != '':
                     rdp_profile_name = 'RDP_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_fmtn'
+                    rd_name = 'RD_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_fmtn'
+                    destination = row[3]
+                    #TODO add check and normalization for fmtn number
                 rdp_profile_name = rdp_profile_name.replace("'", '')
                 description = initials + u' /дект' + site_description
                 short_number = row[7] + row[1]
@@ -61,21 +78,48 @@ def worker():
                 partition = get_partition_by_dn.get_partition_by_dn(directory_number)
                 line_description = alerting_name = display = initials
                 ascii_alerting_name = ascii_display = translit(initials, 'ru', reversed=True).replace("'", '')
-                data_list = [rdp_profile_name, description, user_id, device_pool, css, css, directory_number, partition,
+                rdp_data_list = [rdp_profile_name, description, user_id, device_pool, css, css, directory_number, partition,
                              line_description, alerting_name, ascii_alerting_name, display, ascii_display]
 
-                if check_data_list_contains_none.check_data_list_contains_none(data_list):
-                    write_data_to_output.write_data_to_output(output_filepath_to_check, data_list)
+                if check_data_list_contains_none.check_data_list_contains_none(rdp_data_list):
+                    write_data_to_output.write_data_to_output(output_filepath_to_check, rdp_data_list)
                     count_unresolved_rdp += 1
                     continue
                 else:
-                    write_data_to_output.write_data_to_output(output_filepath, data_list)
-                    print(data_list)
+                    write_data_to_output.write_data_to_output(output_rdp_filepath, rdp_data_list)
+                    print(rdp_data_list)
                     count_rdp += 1
+
+                time_zone = 'Etc/GMT'
+                dual_mode_device = mobile_smart_client = cti_remote_device = day_of_week = start_time = end_time = \
+                    mobility_profile = access_list = ''
+                answer_too_soon_timer = '1500'
+                answer_too_late_timer = '19000'
+                delay_before_ringing_timer = '0'
+                is_mobile_phone = enable_mobile_connect = 't'
+                associated_line_number = str(row[8]) + str(row[1])
+                single_number_reach_voicemail_policy = dial_via_office = 'Use System Default'
+
+                rd_data_list = [rd_name, rdp_profile_name, time_zone, dual_mode_device, mobile_smart_client,
+                                cti_remote_device, destination, answer_too_soon_timer, answer_too_late_timer,
+                                delay_before_ringing_timer, is_mobile_phone, enable_mobile_connect, day_of_week,
+                                start_time, end_time, day_of_week, start_time, end_time, day_of_week, start_time,
+                                end_time, day_of_week, start_time, end_time, day_of_week, start_time, end_time,
+                                day_of_week, start_time, end_time, day_of_week, start_time, end_time, access_list,
+                                associated_line_number, partition, mobility_profile,
+                                single_number_reach_voicemail_policy, dial_via_office]
+
+                write_data_to_output.write_data_to_output(output_rd_filepath, rd_data_list)
+                count_rd += 1
+                print(rd_data_list)
+
+
+    # TODO add total number of inbound records with dect and fmtn numbers
     print('\n')
     print(30 * '#')
     print('Done!, Check the output directory')
     print('total: RDP ' + str(count_rdp) + ' records')
+    print('total: RD ' + str(count_rd) + ' records')
     print('total: unresolved RDP ' + str(count_unresolved_rdp) + ' records')
     print(30 * '#')
     print('\n')

@@ -10,6 +10,7 @@ menu['4']="Construct translation and transformation files"
 menu['5']="Construct pickup group files"
 menu['0']="Exit"
 
+# TODO print file names for user to check
 while True:
     options=menu.keys()
     sorted(options)

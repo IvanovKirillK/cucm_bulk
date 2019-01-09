@@ -6,7 +6,7 @@ config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 
-
+#TODO read all phone the files in one list
 def get_containing_row(short_number):
     for file in (glob.glob('.\\output\\*_phone*')):
         with open(file, mode='r', encoding="utf8") as csv_file:
@@ -90,6 +90,7 @@ def worker():
                 write_data_to_output.write_data_to_output(unassociated_users_filepath,row)
                 count_unassociated += 1
 
+    # TODO add total number of exported phones
     print('\n')
     print(30 * '#')
     print('Done!, Check the output directory')
