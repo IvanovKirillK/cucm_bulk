@@ -45,3 +45,4 @@ while True:
         break
     else:
         print("Unknown Option Selected!")
+        #TODO backup results and input files to archive folder

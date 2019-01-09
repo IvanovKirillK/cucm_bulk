@@ -4,7 +4,7 @@ import configparser
 from transliterate import translit
 from tasks import check_file_exists, check_full_name, get_initials, get_all_ad_users, get_ad_user, get_normalized_number, \
     get_list_of_codes, get_operator_name, get_partition_by_dn, write_header, write_data_to_output, \
-    check_data_list_contains_none
+    check_data_list_contains_none, get_normalized_fmtn_number
 
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
@@ -13,7 +13,7 @@ site_description = config.get("vars", 'site_description')
 dp_prefix = config.get("vars", "dp_prefix")
 css = config.get("vars", "css")
 
-
+#TODO add comments
 def worker():
     for file in (glob.glob('.\\data\\input_data*')):
         check_file_exists.check_file_exists(file)
@@ -40,6 +40,7 @@ def worker():
     output_rdp_filepath = '.\\output\\' + output_filename_prefix + 'RDP' + '.csv'
     output_rd_filepath = '.\\output\\' + output_filename_prefix + 'RD' + '.csv'
     output_filepath_to_check = '.\\output\\' + output_filename_prefix + 'RDP_unresolved' + '.csv'
+    count_input = 0
     count_rdp = 0
     count_rd = 0
     count_unresolved_rdp = 0
@@ -61,11 +62,13 @@ def worker():
                     rdp_profile_name = 'RDP_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_dect'
                     rd_name = 'RD_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_dect'
                     destination = row[2]
+                    count_input += 1
                 if row[3] != '':
                     rdp_profile_name = 'RDP_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_fmtn'
                     rd_name = 'RD_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_fmtn'
-                    destination = row[3]
-                    #TODO add check and normalization for fmtn number
+                    destination = get_normalized_fmtn_number.get_normalized_number(row[3])
+                    count_input += 1
+
                 rdp_profile_name = rdp_profile_name.replace("'", '')
                 description = initials + u' /дект' + site_description
                 short_number = row[7] + row[1]
@@ -113,11 +116,10 @@ def worker():
                 count_rd += 1
                 print(rd_data_list)
 
-
-    # TODO add total number of inbound records with dect and fmtn numbers
     print('\n')
     print(30 * '#')
-    print('Done!, Check the output directory')
+    print('Done! Check the output directory')
+    print('total: input RD ' + str(count_input) + ' records')
     print('total: RDP ' + str(count_rdp) + ' records')
     print('total: RD ' + str(count_rd) + ' records')
     print('total: unresolved RDP ' + str(count_unresolved_rdp) + ' records')

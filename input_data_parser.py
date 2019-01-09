@@ -15,7 +15,7 @@ default_site_operator = config.get("vars", "default_site_operator")
 
 model_list = ['7811', '7821', '8851']
 
-
+#TODO add comments
 def check_internal_number(number):
     try:
         if number.isdigit:
@@ -40,6 +40,8 @@ def worker():
     count_7811 = 0
     count_7821 = 0
     count_8851 = 0
+    count_input = 0
+    count_unassociated = 0
     filename = ".\\data\\input_data.csv"
     file = open(filename, "r")
     readcsv = csv.reader(file, delimiter=',')
@@ -58,6 +60,7 @@ def worker():
         if row[0] == 'name':
             continue
         else:
+            count_input += 1
             namelist = check_full_name.check_full_name(row[0])
             check_internal_number(row[1])
             check_code(row[7])
@@ -74,6 +77,7 @@ def worker():
             if owner_user_id is None:
                 output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
                 write_data_to_output.write_data_to_output(output_filepath, row)
+                count_unassociated += 1
                 continue
             line_description=initials
             alerting_name=initials
@@ -96,12 +100,14 @@ def worker():
                 count_7821 += 1
             if row[4] == '8851':
                 count_8851 += 1
-    #TODO add total number of inbound records
+
     print('\n')
     print(30 * '#')
-    print('Done!, Check the output directory')
+    print('Done! Check the output directory')
+    print('total: input ' + str(count_input) + ' records')
     print('total: 7811 ' + str(count_7811) + ' phones')
     print('total: 7821 ' + str(count_7821) + ' phones')
     print('total: 8851 ' + str(count_8851) + ' phones')
+    print('total: unassociated dn ' + str(count_unassociated) + ' phones')
     print(30 * '#')
     print('\n')

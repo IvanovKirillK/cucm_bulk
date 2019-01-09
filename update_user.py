@@ -1,27 +1,17 @@
 import glob
 import csv
 import configparser
-from tasks import check_file_exists, write_header, write_data_to_output
+from tasks import check_file_exists, write_header, write_data_to_output, get_containing_row
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 
-#TODO read all phone the files in one list
-def get_containing_row(short_number):
-    for file in (glob.glob('.\\output\\*_phone*')):
-        with open(file, mode='r', encoding="utf8") as csv_file:
-            reader = csv.reader(csv_file)
-            for row in reader:
-                if row[7] == short_number:
-                    return row
-                else:
-                    continue
-
-
+#TODO add comments
 def worker():
     count_uu = 0
     count_la = 0
     count_unassociated = 0
+    count_input = 0
     for file in (glob.glob('.\\output\\*_phone*')):
         check_file_exists.check_file_exists(file)
     for file in (glob.glob('.\\data\\*Export_phones*')):
@@ -49,11 +39,20 @@ def worker():
     write_header.write_header(update_users_filepath, update_users_header)
     write_header.write_header(line_appearence_filepath, line_appearence_header)
 
+    phone_list = []
+
+    for file in (glob.glob('.\\output\\*_phone*')):
+        with open(file, mode='r', encoding="utf8") as csv_file:
+            reader = csv.reader(csv_file)
+            for row in reader:
+                phone_list.append(row)
+
     with open(glob.glob('.\\data\\*Export_phones*')[0], mode='r', encoding="utf8") as csv_file:
         reader = csv.reader(csv_file)
         for row in reader:
+            count_input +=1
             if row[4].isdigit():
-                phone_record=get_containing_row(row[4])
+                phone_record=get_containing_row.get_containing_row(phone_list, row[4])
                 user_id = phone_record[3]
                 title = str(row[4]) + ' in ' + str(row[5])
                 device_name = row[0]
@@ -90,12 +89,12 @@ def worker():
                 write_data_to_output.write_data_to_output(unassociated_users_filepath,row)
                 count_unassociated += 1
 
-    # TODO add total number of exported phones
     print('\n')
     print(30 * '#')
-    print('Done!, Check the output directory')
+    print('Done! Check the output directory')
+    print('total: input ' + str(count_input - 1) + ' records')
     print('total: update_users ' + str(count_uu) + ' records')
     print('total: line_appearance ' + str(count_la) + ' records')
-    print('total: unassociated_users ' + str(count_unassociated) + ' records')
+    print('total: unassociated_users ' + str(count_unassociated - 1) + ' records')
     print(30 * '#')
     print('\n')
