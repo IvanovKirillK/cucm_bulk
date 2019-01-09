@@ -20,7 +20,7 @@ while True:
     if selection =='1':
         print("Constructing phones files...")
         try:
-            input_data_parser.import_data_parse()
+            input_data_parser.worker()
         except Exception as e:
             print(e)
     elif selection == '2':

@@ -20,5 +20,7 @@ def get_list_of_codes(number):
                     list_codes.append(row)
             except Exception as e:
                 print('Reference exception', e)
+    if number == '':
+        list_codes = ''
 
     return list_codes
