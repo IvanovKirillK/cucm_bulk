@@ -58,3 +58,7 @@ while True:
     else:
         print("Unknown Option Selected!")
         #TODO backup results and input files to archive folder
+        #TODO add tests for tasks
+        #TODO add tests for workers
+        #TODO add travis CI pipeline
+        #TODO add docker CD pipeline

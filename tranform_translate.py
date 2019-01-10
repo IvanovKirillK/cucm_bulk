@@ -21,8 +21,27 @@ def worker():
     file = open(filename, "r")
     readcsv = csv.reader(file, delimiter=',')
 
+    callingpartytransparent_header = ['PATTERN', 'ROUTE PARTITION', 'DESCRIPTION', 'NUMBERING PLAN', 'ROUTE FILTER',
+                                      'URGENT PRIORITY', 'USE CALLING PARTY EXTERNAL PHONE NUMBER MASK',
+                                      'DISCARD DIGIT INSTRUCTIONS', 'CALLING PARTY TRANSFORMATION MASK',
+                                      'PREFIX DIGITS_OUTGOING CALLS', 'CALLING LINE ID PRESENTATION',
+                                      'CALLING PARTY NUMBER TYPE', 'CALLING PARTY NUMBERING PLAN',
+                                      'MLPP PREEMPTION DISABLED']
+
+    # for key in config['oper_partition_suffix']:
+    #     print(key)
     for row in readcsv:
         if row[0] == 'name':
             continue
         else:
             count_input += 1
+            if row[6] == '':
+                continue
+            else:
+                pattern = str(row[8]) + str(row[1])
+                out_number = get_normalized_number.get_normalized_number(row[6])
+                list_codes = get_list_of_codes.get_list_of_codes(out_number)
+                operator_name = get_operator_name.get_operator_name(out_number, list_codes)
+                print(operator_name.lower())
+                #route_partition = pt_prefix +
+

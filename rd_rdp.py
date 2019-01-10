@@ -51,6 +51,7 @@ def worker():
     filename = ".\\data\\input_data.csv"
     file = open(filename, 'r')
     readcsv = csv.reader(file, delimiter=',')
+    list_codes = get_list_of_codes.get_list_of_codes()
     for row in readcsv:
         if row[0] == 'name':
             continue
@@ -74,7 +75,7 @@ def worker():
                 short_number = row[7] + row[1]
                 user_id = (get_ad_user.get_ad_user(short_number, user_list))
                 out_number = (get_normalized_number.get_normalized_number(row[6]))
-                list_codes = get_list_of_codes.get_list_of_codes(out_number)
+                #list_codes = get_list_of_codes.get_list_of_codes(out_number)
                 operator_name = (translit(get_operator_name.get_operator_name(out_number, list_codes), 'ru', reversed=True))
                 device_pool = dp_prefix + operator_name
                 directory_number = str(row[8]) + str(row[1])
