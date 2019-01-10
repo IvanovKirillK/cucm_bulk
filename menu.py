@@ -1,6 +1,7 @@
 import input_data_parser
 import update_user
 import rd_rdp
+import tranform_translate
 from tasks import show_submenu
 
 menu = {}
@@ -43,6 +44,10 @@ while True:
                 print(e)
     elif selection == '4':
         print("Constructing translation and transformation files...")
+        try:
+            tranform_translate.worker()
+        except Exception as e:
+            print(e)
     elif selection == '5':
         print("Constructing pickup group files...")
     elif selection == '9':

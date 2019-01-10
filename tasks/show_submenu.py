@@ -92,3 +92,5 @@ def show_RD_RDP_submenu():
             return False
         else:
             return False
+
+#TODO add translate_transform submenu
