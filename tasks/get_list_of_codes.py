@@ -12,7 +12,6 @@ def get_list_of_codes():
             print('Reference exception', e)
     with open('.\\directory\\Kod4.csv', mode='r') as csv_file:
         reader = csv.reader(csv_file)
-        list_codes = []
         try:
             for row in reader:
                 list_codes.append(row)
