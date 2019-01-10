@@ -28,6 +28,28 @@ def worker():
                                       'CALLING PARTY NUMBER TYPE', 'CALLING PARTY NUMBERING PLAN',
                                       'MLPP PREEMPTION DISABLED']
 
+    translationpatter_header = ['TRANSLATION PATTERN', 'ROUTE PARTITION', 'DESCRIPTION', 'NUMBERING PLAN',
+                                'ROUTE FILTER', 'MLPP PRECEDENCE', 'CALLING SEARCH SPACE', 'ROUTE OPTION',
+                                'OUTSIDE DIAL TONE', 'URGENT PRIORITY', 'CALLING PARTY TRANSFORMATION MASK',
+                                'CALLING PARTY PREFIX DIGITS (OUTGOING CALLS)',
+                                'CALLING LINE ID PRESENTATION', 'CALLING NAME PRESENTATION',
+                                'CONNECTED LINE ID PRESENTATION', 'CONNECTED NAME PRESENTATION', 'DISCARD DIGITS',
+                                'CALLED PARTY TRANSFORM MASK', 'CALLED PARTY PREFIX DIGITS (OUTGOING CALLS)',
+                                'BLOCK THIS PATTERN OPTION', 'CALLING PARTY IE NUMBER TYPE',
+                                'CALLING PARTY NUMBERING PLAN', 'CALLED PARTY IE NUMBER TYPE',
+                                'CALLED PARTY NUMBERING PLAN', 'USE CALLING PARTYS EXTERNAL PHONE NUMBER MASK',
+                                'RESOURCE PRIORITY NAMESPACE NETWORK DOMAIN', 'ROUTE CLASS',
+                                'ROUTE NEXT HOP BY CALLING PARTY NUMBER', 'EXTERNAL CALL CONTROL PROFILE',
+                                'IS AN EMERGENCY SERVICES NUMBER',
+                                'DO NOT WAIT FOR INTERDIGIT TIMEOUT ON SUBSEQUENT HOPS',
+                                "USE ORIGINATOR'S CALLING SEARCH SPACE"]
+
+    output_callingpartytransparent_filepath = '.\\output\\' + 'callingpartytransparent' + '.csv'
+    output_translationpatter_filepath = '.\\output\\' + 'translationpatter' + '.csv'
+
+    write_header.write_header_ansi(output_callingpartytransparent_filepath, callingpartytransparent_header)
+    write_header.write_header_ansi(output_translationpatter_filepath, translationpatter_header)
+
     group_list = get_list_of_group_numbers.get_list_of_group_numbers(filename)
 
     for row in readcsv:
@@ -48,7 +70,7 @@ def worker():
                          route_partition = pt_prefix + config['oper_partition_suffix'][key]
                 initials = get_initials.get_initials_from_string(row[0])
                 description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
-                numbering_plan = route_filter = discard_digit_instruction = 'Null'
+                numbering_plan = route_filter = discard_digit_instruction = 'NULL'
                 urgent_priority = 't'
                 use_calling_party_external_phone_number_mask = 'Off'
                 calling_party_transformation_mask = out_number
@@ -62,3 +84,6 @@ def worker():
                                        prefix_digit_outgoing_call, calling_line_in_presentation,
                                        calling_party_number_type, calling_party_numbering_plan,
                                        mlpp_presentation_enabled]
+                write_data_to_output.write_data_to_output_ansi(output_callingpartytransparent_filepath,
+                                                               transform_data_list)
+                print(transform_data_list)
