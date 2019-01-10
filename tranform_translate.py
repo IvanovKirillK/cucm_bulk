@@ -6,11 +6,8 @@ from tasks import get_initials, get_operator_name, get_normalized_number, \
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
 site_description = config.get("vars", 'site_description')
-dn_partition = config.get("vars", "dn_partition")
-dp_prefix = config.get("vars", "dp_prefix")
 pt_prefix = config.get("vars", "pt_prefix")
-output_filename_prefix = config.get("vars", "output_filename_prefix")
-default_site_operator = config.get("vars", "default_site_operator")
+
 
 #TODO add comments
 def worker():

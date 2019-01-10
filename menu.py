@@ -43,15 +43,18 @@ while True:
             except Exception as e:
                 print(e)
     elif selection == '4':
-        print("Constructing translation and transformation files...")
-        try:
-            tranform_translate.worker()
-        except Exception as e:
-            print(e)
+        if show_submenu.show_translate_submenu():
+            print("Constructing translation and transformation files...")
+            try:
+                tranform_translate.worker()
+            except Exception as e:
+                print(e)
     elif selection == '5':
         print("Constructing pickup group files...")
+        print("WIP")
     elif selection == '9':
         print("Backup...")
+        print("WIP")
     elif selection == '0':
         print("Goodbuy!")
         break

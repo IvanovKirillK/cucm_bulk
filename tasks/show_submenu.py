@@ -93,4 +93,22 @@ def show_RD_RDP_submenu():
         else:
             return False
 
-#TODO add translate_transform submenu
+
+def show_translate_submenu():
+    filename = ".\\data\\input_data.csv"
+    print('\n')
+    print(30 * '#')
+    if check_file_exists.check_file_exists(filename):
+        print('Input: Will be working with following input file - ', filename)
+        print('Config options: site_description - ', site_description)
+        print('Config options: pt_prefix - ', pt_prefix)
+        print('Output: following files will be generated - ', '.\\output\\' + 'callingpartytransparent' + '.csv')
+        print('Output: following files will be generated - ', '.\\output\\' + 'translationpattern' + '.csv')
+        selection = input("Continue? [y/n]:")
+        if selection == 'y':
+            return True
+        if selection == 'n':
+            return False
+        else:
+            return False
+
