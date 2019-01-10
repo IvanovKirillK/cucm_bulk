@@ -1,6 +1,7 @@
 import input_data_parser
 import update_user
 import rd_rdp
+from tasks import show_submenu
 
 menu = {}
 menu['1']="Construct phones files."
@@ -11,7 +12,7 @@ menu['5']="Construct pickup group files"
 menu['6']="Backup input and output files"
 menu['0']="Exit"
 
-# TODO print file names for user to check
+
 while True:
     options=menu.keys()
     sorted(options)
@@ -20,23 +21,26 @@ while True:
 
     selection=input("Please Select:")
     if selection =='1':
-        print("Constructing phones files...")
-        try:
-            input_data_parser.worker()
-        except Exception as e:
-            print(e)
+        if show_submenu.show_input_parser_submenu():
+            print("Constructing phones files...")
+            try:
+                input_data_parser.worker()
+            except Exception as e:
+                print(e)
     elif selection == '2':
-        print("Constructing user_update and line_appearance files...")
-        try:
-            update_user.worker()
-        except Exception as e:
-            print(e)
+        if show_submenu.show_update_user_submenu():
+            print("Constructing user_update and line_appearance files...")
+            try:
+                update_user.worker()
+            except Exception as e:
+                print(e)
     elif selection == '3':
-        print("Constructing RD and RDP files...")
-        try:
-            rd_rdp.worker()
-        except Exception as e:
-            print(e)
+        if show_submenu.show_RD_RDP_submenu():
+            print("Constructing RD and RDP files...")
+            try:
+                rd_rdp.worker()
+            except Exception as e:
+                print(e)
     elif selection == '4':
         print("Constructing translation and transformation files...")
     elif selection == '5':

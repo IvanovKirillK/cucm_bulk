@@ -34,7 +34,7 @@ def worker():
 
     line_appearence_filepath = '.\\output\\' + output_filename_prefix + 'line_appearence' + '.csv'
 
-    unassociated_users_filepath = '.\\output\\' + output_filename_prefix + 'line_appearence' + '.csv'
+    unassociated_users_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_users' + '.csv'
 
     write_header.write_header(update_users_filepath, update_users_header)
     write_header.write_header(line_appearence_filepath, line_appearence_header)
