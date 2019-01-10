@@ -2,7 +2,7 @@ import csv
 from tasks import check_file_exists, get_normalized_number
 
 
-def get_list_of_group_numbers(filename):
+def get_list_of_group_numbers(filename, row_number):
     group_dict = {}
     group_list = []
     check_file_exists.check_file_exists(filename)
@@ -12,10 +12,10 @@ def get_list_of_group_numbers(filename):
         if row[0] == 'name':
             continue
         else:
-            if get_normalized_number.get_normalized_number(row[6]) in group_dict.keys():
-                group_dict[get_normalized_number.get_normalized_number(row[6])] += 1
+            if get_normalized_number.get_normalized_number(row[row_number]) in group_dict.keys():
+                group_dict[get_normalized_number.get_normalized_number(row[row_number])] += 1
             else:
-                group_dict[get_normalized_number.get_normalized_number(row[6])] = 1
+                group_dict[get_normalized_number.get_normalized_number(row[row_number])] = 1
 
     for key in group_dict:
         if group_dict[key] == 1:

@@ -50,20 +50,22 @@ def worker():
     write_header.write_header_ansi(output_callingpartytransparent_filepath, callingpartytransparent_header)
     write_header.write_header_ansi(output_translationpatter_filepath, translationpatter_header)
 
-    group_list = get_list_of_group_numbers.get_list_of_group_numbers(filename)
+    group_list_out = get_list_of_group_numbers.get_list_of_group_numbers(filename,6)
+    group_list_in = get_list_of_group_numbers.get_list_of_group_numbers(filename, 5)
+
+    list_codes = get_list_of_codes.get_list_of_codes()
 
     for row in readcsv:
         if row[0] == 'name':
             continue
         out_number = get_normalized_number.get_normalized_number(row[6])
-        if out_number in group_list:
+        if out_number in group_list_out:
             continue
         else:
             if row[6] == '':
                 continue
             else:
                 pattern = str(row[8]) + str(row[1])
-                list_codes = get_list_of_codes.get_list_of_codes()
                 operator_name = get_operator_name.get_operator_name(out_number, list_codes)
                 for key in config['oper_partition_suffix']:
                      if key == operator_name.lower():
@@ -87,3 +89,40 @@ def worker():
                 write_data_to_output.write_data_to_output_ansi(output_callingpartytransparent_filepath,
                                                                transform_data_list)
                 print(transform_data_list)
+
+    file.close()
+    file = open(filename, "r")
+    readcsv = csv.reader(file, delimiter=',')
+
+
+    for row in readcsv:
+        if row[0] == 'name':
+            continue
+        in_number = get_normalized_number.get_normalized_number(row[5])
+        if in_number in group_list_in:
+            continue
+        else:
+            if row[5] == '':
+                continue
+            else:
+                operator_name = get_operator_name.get_operator_name(in_number, list_codes)
+                translation_pattern = in_number
+                route_partition = 'Pt_SYS_PSTN_Incoming'
+                initials = get_initials.get_initials_from_string(row[0])
+                description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' \
+                              + site_description
+                numbering_plan = route_filter = calling_party_transformation_mask = discard_digits = \
+                    called_partty_prefix_digits = resource_priority_namespace = external_call_control_profile = ''
+                mlpp_presence = calling_line_id_presentation = calling_name_presentation = \
+                    connected_line_id_presentation = connected_name_presentation = route_class = 'Default'
+                css = 'CSS_SYS_CUCM'
+                route_option = outside_dial_tone = route_next_hop = is_an_energency = do_not_wait_interdigit \
+                    = use_origin_css = 'f'
+                urgent_priority = 't'
+                calling_party_prefix_digits = '08'
+                called_partty_transform_mask = str(row[8]) + str(row[1])
+                block_this_patter = 'No Error'
+                calling_party_ie_number_type = calling_party_numbering_plan = called_partty_ie_number = \
+                    called_partty_numbering_plan = 'Cisco CallManager'
+                use_calling_party_external_phone_number_mask = 'Off'
+
