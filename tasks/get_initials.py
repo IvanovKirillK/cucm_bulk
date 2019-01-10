@@ -4,3 +4,8 @@ def get_initials(namelist):
     else:
         initials = (namelist[0] + ' ' + namelist[1][:1].upper() + '.' + namelist[2][:1].upper() + '.')
     return initials
+
+
+def get_initials_from_string(fullname):
+    namelist = fullname.split(' ')
+    return get_initials(namelist)
