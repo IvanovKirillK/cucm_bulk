@@ -11,6 +11,7 @@ pt_prefix = config.get("vars", "pt_prefix")
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 default_site_operator = config.get("vars", "default_site_operator")
 css = config.get("vars", "css")
+forward_all_destination_prefix = config.get('vars', 'forward_all_destination_prefix')
 
 
 def show_input_parser_submenu():
@@ -31,6 +32,7 @@ def show_input_parser_submenu():
         print('Config options: pt_prefix - ', pt_prefix)
         print('Config options: output_filename_prefix - ', output_filename_prefix)
         print('Config options: default_site_operator - ', default_site_operator)
+        print('Config options: forward_all_destination_prefix - ', forward_all_destination_prefix)
         print('Output: following files will be generated - ', output_filename_prefix + ' phones_*model*.csv')
         print('Output: following files will be generated - ', output_filename_prefix + ' unassociated_dn.csv')
         selection = input("Continue? [y/n]:")

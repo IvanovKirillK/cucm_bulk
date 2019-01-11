@@ -2,7 +2,7 @@ import input_data_parser
 import update_user
 import rd_rdp
 import tranform_translate
-from tasks import show_submenu
+from tasks import show_submenu, get_pt_dp_by_operator_name
 
 menu = {}
 menu['1']="Construct phones files."
@@ -52,9 +52,11 @@ while True:
     elif selection == '5':
         print("Constructing pickup group files...")
         print("WIP")
+        get_pt_dp_by_operator_name.get_partition_by_operator_name('123')
     elif selection == '9':
         print("Backup...")
         print("WIP")
+
     elif selection == '0':
         print("Goodbuy!")
         break
@@ -66,7 +68,7 @@ while True:
         #TODO add travis CI pipeline
         #TODO add docker CD pipeline
 
-        #TODO необходимо определеие партиции и девайс пула по имени опрератора
         #TODO нужен пункт меню анализа списка представленных на сайте опретаоров по входящим и исходящим номерам
-        #TODO добавить столбец с именами пользователей ad, поменять алгоритм поиска имени пользователя
+
+
 

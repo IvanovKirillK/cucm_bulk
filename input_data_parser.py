@@ -2,7 +2,8 @@ import csv
 import configparser
 from transliterate import translit
 from tasks import check_full_name, get_initials, get_all_ad_users, get_operator_name, get_normalized_number, \
-    get_list_of_codes, write_header, write_data_to_output, get_ad_user, check_file_exists
+    get_list_of_codes, write_header, write_data_to_output, get_ad_user, check_file_exists, get_pt_dp_by_operator_name, \
+    check_data_list_contains_none
 
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
@@ -12,6 +13,7 @@ dp_prefix = config.get("vars", "dp_prefix")
 pt_prefix = config.get("vars", "pt_prefix")
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 default_site_operator = config.get("vars", "default_site_operator")
+forward_all_destination_prefix = config.get('vars', 'forward_all_destination_prefix')
 
 model_list = ['7811', '7821', '8851']
 
@@ -23,7 +25,7 @@ def check_internal_number(number):
         else:
             print('Check following internal number:', number)
     except Exception as e:
-        print('Check names in input data ' + e)
+        print('Check data in input data ' + e)
 
 
 def check_code(code):
@@ -33,7 +35,7 @@ def check_code(code):
         else:
             print('Check following site_prefix:', code)
     except Exception as e:
-        print('Check names in input data ' + e)
+        print('Check data in input data ' + e)
 
 
 def worker():
@@ -72,25 +74,18 @@ def worker():
             mac_address=''
             description = initials + ' ' + site_description
             out_number = (get_normalized_number.get_normalized_number(row[6]))
-            #list_codes = get_list_of_codes.get_list_of_codes(out_number)
-
-            operator_name = (translit(get_operator_name.get_operator_name(out_number,list_codes), 'ru', reversed=True))
-            device_pool = dp_prefix + operator_name
+            operator_name = get_operator_name.get_operator_name(out_number, list_codes)
+            device_pool = get_pt_dp_by_operator_name.get_device_pool_by_operator_name(operator_name)
             short_number = row[7] + row[1]
             if row[9] != '':
                 owner_user_id = row[9]
             else:
                 owner_user_id = (get_ad_user.get_ad_user(short_number, user_list))
-            if owner_user_id is None:
-                output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
-                write_data_to_output.write_data_to_output(output_filepath, row)
-                count_unassociated += 1
-                continue
             line_description=initials
             alerting_name=initials
             asci_diaplay=ascii_alerting_name=(translit(initials, 'ru', reversed=True))
-            directory_number=row[8]+row[1]
-            forward_all_destination='###'+row[1]
+            directory_number = row[8] + row[1]
+            forward_all_destination = forward_all_destination_prefix + str(row[1])
             display=initials
             line_text_label=row[1].rstrip('\n')
             output_filepath = '.\\output\\' + output_filename_prefix + 'phones_' + row[4] + '.csv'
@@ -98,7 +93,11 @@ def worker():
             data_list = [mac_address, description, device_pool, owner_user_id, line_description, alerting_name,
                          ascii_alerting_name, directory_number, forward_all_destination, display, asci_diaplay,
                          line_text_label]
-
+            if check_data_list_contains_none.check_data_list_contains_none(data_list):
+                output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
+                write_data_to_output.write_data_to_output(output_filepath, row)
+                count_unassociated += 1
+                continue
             write_data_to_output.write_data_to_output(output_filepath, data_list)
             print(data_list)
             if row[4] == '7811':
