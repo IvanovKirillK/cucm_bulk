@@ -73,7 +73,10 @@ def worker():
                 rdp_profile_name = rdp_profile_name.replace("'", '')
                 description = initials + u' /дект' + site_description
                 short_number = row[7] + row[1]
-                user_id = (get_ad_user.get_ad_user(short_number, user_list))
+                if row[9] != '':
+                    user_id = row[9]
+                else:
+                    user_id = (get_ad_user.get_ad_user(short_number, user_list))
                 out_number = (get_normalized_number.get_normalized_number(row[6]))
                 #list_codes = get_list_of_codes.get_list_of_codes(out_number)
                 operator_name = (translit(get_operator_name.get_operator_name(out_number, list_codes), 'ru', reversed=True))

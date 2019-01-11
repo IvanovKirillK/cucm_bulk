@@ -77,7 +77,10 @@ def worker():
             operator_name = (translit(get_operator_name.get_operator_name(out_number,list_codes), 'ru', reversed=True))
             device_pool = dp_prefix + operator_name
             short_number = row[7] + row[1]
-            owner_user_id = (get_ad_user.get_ad_user(short_number, user_list))
+            if row[9] != '':
+                owner_user_id = row[9]
+            else:
+                owner_user_id = (get_ad_user.get_ad_user(short_number, user_list))
             if owner_user_id is None:
                 output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
                 write_data_to_output.write_data_to_output(output_filepath, row)
