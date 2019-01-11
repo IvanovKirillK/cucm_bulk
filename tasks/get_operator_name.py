@@ -15,26 +15,6 @@ def get_operator_name(number, list_codes):
         if code == (temp_list[0].lstrip("['")):
             if int(temp_list[1]) <= int(num) <= int(temp_list[2]):
                 oper = temp_list[4]
-                if temp_list[4] == 'ПАО "Вымпел-Коммуникации"':
-                    oper = 'Билайн'
-                if temp_list[4] == 'ООО "Газпром телеком"':
-                    oper = 'ГазпромТелеком'
-                if temp_list[4] == 'ЗАО "ГЛОБУС-ТЕЛЕКОМ"':
-                    oper = 'ГлобусТелеком'
-                if temp_list[4] == 'ООО "Газпром связь"':
-                    oper = 'ГазпромСвязь'
-                if temp_list[4] == 'ПАО "Ростелеком"':
-                    oper = 'Ростелеком'
-                if temp_list[4] == 'ОАО "АСВТ"':
-                    oper = 'АСВТ'
-                if temp_list[4] == 'ОАО "КОМКОР"':
-                    oper = 'Комкор'
-                if temp_list[4] == 'ОАО "Костромская городская телефонная сеть"':
-                    oper = 'Костромская городская телефонная сеть'
-                if temp_list[4] == 'ООО "Фрязинская Телефонная Сеть"':
-                    oper = 'Фрязинская Телефонная Сеть'
-                if temp_list[4] == 'АО "Квантум"':
-                    oper = 'Квантум'
-                if temp_list[4] == 'ООО "ПО "Тонус"':
-                    oper = 'Тонус'
+                if oper in config['oper_name']:
+                    oper = config['oper_name'][oper]
                 return oper
