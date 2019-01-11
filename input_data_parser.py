@@ -58,6 +58,9 @@ def worker():
     for model in model_list:
         output_filepath = '.\\output\\' + output_filename_prefix + 'phones_' + model + '.csv'
         write_header.write_header(output_filepath, header)
+        output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
+        header = ['']
+        write_header.write_header(output_filepath, header)
 
     list_codes = get_list_of_codes.get_list_of_codes()
 
@@ -95,7 +98,9 @@ def worker():
                          line_text_label]
             if check_data_list_contains_none.check_data_list_contains_none(data_list):
                 output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
+                row.append('---None in file')
                 write_data_to_output.write_data_to_output(output_filepath, row)
+                write_data_to_output.write_data_to_output(output_filepath, data_list)
                 count_unassociated += 1
                 continue
             write_data_to_output.write_data_to_output(output_filepath, data_list)
