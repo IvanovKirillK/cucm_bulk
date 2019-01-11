@@ -18,3 +18,19 @@ def get_operator_name(number, list_codes):
                 if oper in config['oper_name']:
                     oper = config['oper_name'][oper]
                 return oper
+
+
+def get_full_operator_name(number, list_codes):
+    code = (number[:3])
+    num = (number[3:])
+    for i in range(0, len(list_codes)):
+        temp_list = str(list_codes[i]).split(';')
+        if code == (temp_list[0].lstrip("['")):
+            if int(temp_list[1]) <= int(num) <= int(temp_list[2]):
+                oper = temp_list[4]
+                if oper is None:
+                    continue
+                else:
+                    return str(oper)
+
+

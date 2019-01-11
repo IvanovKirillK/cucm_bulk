@@ -1,7 +1,8 @@
 import csv
 import configparser
 from tasks import get_initials, get_operator_name, get_normalized_number, \
-    get_list_of_codes, write_header, write_data_to_output, check_file_exists, get_list_of_group_numbers
+    get_list_of_codes, write_header, write_data_to_output, check_file_exists, get_list_of_group_numbers, \
+    get_pt_dp_by_operator_name
 
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
@@ -73,9 +74,10 @@ def worker():
             else:
                 pattern = str(row[8]) + str(row[1])
                 operator_name = get_operator_name.get_operator_name(out_number, list_codes)
-                for key in config['oper_partition_suffix']:
-                     if key == operator_name.lower():
-                         route_partition = pt_prefix + config['oper_partition_suffix'][key]
+                # for key in config['oper_partition_suffix']:
+                #      if key == operator_name.lower():
+                #          route_partition = pt_prefix + config['oper_partition_suffix'][key]
+                route_partition = get_pt_dp_by_operator_name.get_partition_by_operator_name(operator_name)
                 initials = get_initials.get_initials_from_string(row[0])
                 description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
                 numbering_plan = route_filter = discard_digit_instruction = 'NULL'

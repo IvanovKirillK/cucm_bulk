@@ -4,7 +4,7 @@ import configparser
 from transliterate import translit
 from tasks import check_file_exists, check_full_name, get_initials, get_all_ad_users, get_ad_user, get_normalized_number, \
     get_list_of_codes, get_operator_name, get_partition_by_dn, write_header, write_data_to_output, \
-    check_data_list_contains_none, get_normalized_fmtn_number
+    check_data_list_contains_none, get_normalized_fmtn_number, get_pt_dp_by_operator_name
 
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
@@ -79,8 +79,10 @@ def worker():
                     user_id = (get_ad_user.get_ad_user(short_number, user_list))
                 out_number = (get_normalized_number.get_normalized_number(row[6]))
                 #list_codes = get_list_of_codes.get_list_of_codes(out_number)
-                operator_name = (translit(get_operator_name.get_operator_name(out_number, list_codes), 'ru', reversed=True))
-                device_pool = dp_prefix + operator_name
+                operator_name_tr = (translit(get_operator_name.get_operator_name(out_number, list_codes), 'ru', reversed=True))
+                operator_name = get_operator_name.get_operator_name(out_number, list_codes)
+                device_pool = get_pt_dp_by_operator_name.get_device_pool_by_operator_name(operator_name)
+                #device_pool = dp_prefix + operator_name_tr
                 directory_number = str(row[8]) + str(row[1])
                 partition = get_partition_by_dn.get_partition_by_dn(directory_number)
                 line_description = alerting_name = display = initials
