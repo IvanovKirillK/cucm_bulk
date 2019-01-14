@@ -23,7 +23,7 @@ while True:
       print(entry, menu[entry])
 
     selection=input("Please Select:")
-    if selection =='1':
+    if selection == '1':
         if show_submenu.show_input_parser_submenu():
             print("Constructing phones files...")
             try:
@@ -85,6 +85,7 @@ while True:
         #TODO проверить где используется получние имени партиции или девайс пула, заменить на определние по имени опретаора - сделано, необходимы тесты
         #TODO unassiciated dn переделать аппенд
         #TODO unassociated dn писать логи
+        #TODO определять phone_model_list по исходным данным
 
 
 

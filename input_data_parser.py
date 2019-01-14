@@ -58,9 +58,10 @@ def worker():
     for model in model_list:
         output_filepath = '.\\output\\' + output_filename_prefix + 'phones_' + model + '.csv'
         write_header.write_header(output_filepath, header)
-        output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
-        header = ['']
-        write_header.write_header(output_filepath, header)
+
+    output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
+    unassociated_header = ['']
+    write_header.write_header(output_filepath, unassociated_header)
 
     list_codes = get_list_of_codes.get_list_of_codes()
 
@@ -69,7 +70,7 @@ def worker():
             continue
         else:
             count_input += 1
-            namelist = check_full_name.check_full_name(row[0])
+            namelist = check_full_name.check_full_name(row[0].rstrip(' ').lstrip(' '))
             check_internal_number(row[1])
             check_code(row[7])
             check_code(row[8])
@@ -97,10 +98,12 @@ def worker():
                          ascii_alerting_name, directory_number, forward_all_destination, display, asci_diaplay,
                          line_text_label]
             if check_data_list_contains_none.check_data_list_contains_none(data_list):
+                element = check_data_list_contains_none.get_none_item(header, data_list)
                 output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
-                row.append('---None in file')
                 write_data_to_output.write_data_to_output(output_filepath, row)
+                data_list.append('---None in datalist, ' + element + ' is None')
                 write_data_to_output.write_data_to_output(output_filepath, data_list)
+                write_data_to_output.write_data_to_output(output_filepath, '\n')
                 count_unassociated += 1
                 continue
             write_data_to_output.write_data_to_output(output_filepath, data_list)
