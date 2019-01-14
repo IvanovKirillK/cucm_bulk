@@ -81,11 +81,9 @@ while True:
         #TODO add tests for workers
         #TODO add travis CI pipeline
         #TODO add docker CD pipeline
+        #TODO переделать логирование
 
         #TODO проверить где используется получние имени партиции или девайс пула, заменить на определние по имени опретаора - сделано, необходимы тесты
-        #TODO unassiciated dn переделать аппенд
-        #TODO unassociated dn писать логи
-        #TODO определять phone_model_list по исходным данным
 
 
 

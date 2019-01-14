@@ -3,7 +3,8 @@ import configparser
 from transliterate import translit
 from tasks import check_full_name, get_initials, get_all_ad_users, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, get_ad_user, check_file_exists, get_pt_dp_by_operator_name, \
-    check_data_list_contains_none
+    check_data_list_contains_none, get_phone_model_list
+
 
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
@@ -15,7 +16,6 @@ output_filename_prefix = config.get("vars", "output_filename_prefix")
 default_site_operator = config.get("vars", "default_site_operator")
 forward_all_destination_prefix = config.get('vars', 'forward_all_destination_prefix')
 
-model_list = ['7811', '7821', '8851']
 
 #TODO add comments
 def check_internal_number(number):
@@ -45,15 +45,16 @@ def worker():
     count_input = 0
     count_unassociated = 0
     filename = ".\\data\\input_data.csv"
+    model_list = get_phone_model_list.get_phone_model_list(filename)
     check_file_exists.check_file_exists(filename)
     file = open(filename, "r")
     readcsv = csv.reader(file, delimiter=',')
 
     user_list=get_all_ad_users.get_all_ad_users()
 
-    header = ['MAC ADDRESS','DESCRIPTION','DEVICE POOL','OWNER USER ID','LINE DESCRIPTION  1',
-                      'ALERTING NAME  1','ASCII ALERTING NAME  1','DIRECTORY NUMBER  1','FORWARD ALL DESTINATION  1',
-                      'DISPLAY  1','ASCII DISPLAY  1','LINE TEXT LABEL  1']
+    header = ['MAC ADDRESS', 'DESCRIPTION', 'DEVICE POOL', 'OWNER USER ID', 'LINE DESCRIPTION  1',
+                      'ALERTING NAME  1', 'ASCII ALERTING NAME  1', 'DIRECTORY NUMBER  1', 'FORWARD ALL DESTINATION  1',
+                      'DISPLAY  1', 'ASCII DISPLAY  1', 'LINE TEXT LABEL  1']
 
     for model in model_list:
         output_filepath = '.\\output\\' + output_filename_prefix + 'phones_' + model + '.csv'
@@ -75,7 +76,7 @@ def worker():
             check_code(row[7])
             check_code(row[8])
             initials = get_initials.get_initials(namelist)
-            mac_address=''
+            mac_address = ''
             description = initials + ' ' + site_description
             out_number = (get_normalized_number.get_normalized_number(row[6]))
             operator_name = get_operator_name.get_operator_name(out_number, list_codes)
@@ -85,13 +86,13 @@ def worker():
                 owner_user_id = row[9]
             else:
                 owner_user_id = (get_ad_user.get_ad_user(short_number, user_list))
-            line_description=initials
-            alerting_name=initials
-            asci_diaplay=ascii_alerting_name=(translit(initials, 'ru', reversed=True))
+            line_description = initials
+            alerting_name = initials
+            asci_diaplay = ascii_alerting_name = (translit(initials, 'ru', reversed=True))
             directory_number = row[8] + row[1]
             forward_all_destination = forward_all_destination_prefix + str(row[1])
-            display=initials
-            line_text_label=row[1].rstrip('\n')
+            display = initials
+            line_text_label = row[1].rstrip('\n')
             output_filepath = '.\\output\\' + output_filename_prefix + 'phones_' + row[4] + '.csv'
 
             data_list = [mac_address, description, device_pool, owner_user_id, line_description, alerting_name,
