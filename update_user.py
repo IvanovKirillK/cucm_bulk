@@ -9,7 +9,7 @@ config.read(".\\data\\config.ini", encoding='utf-8')
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 
 
-# worker - в нем делется вс работа
+# worker - в нем делется вся работа
 def worker():
     # определяем счетчики для статистики
     count_uu = 0
