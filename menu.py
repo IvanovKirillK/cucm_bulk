@@ -5,22 +5,23 @@ import tranform_translate
 import operator_list
 from tasks import show_submenu, get_pt_dp_by_operator_name
 
+
 menu = {}
-menu['1']="Construct phones files."
-menu['2']="Construct user_update and line_appearance files."
-menu['3']="Construct RD and RDP files"
-menu['4']="Construct translation and transformation files"
-menu['5']="Construct pickup group files"
-menu['8']="Show list of operators on the site"
-menu['9']="Backup input and output files"
-menu['0']="Exit"
+menu['1'] = "Construct phones files."
+menu['2'] = "Construct user_update and line_appearance files."
+menu['3'] = "Construct RD and RDP files"
+menu['4'] = "Construct translation and transformation files"
+menu['5'] = "Construct pickup group files"
+menu['8'] = "Show list of operators on the site"
+menu['9'] = "Backup input and output files"
+menu['0'] = "Exit"
 
 
 while True:
     options=menu.keys()
     sorted(options)
     for entry in options:
-      print(entry, menu[entry])
+        print(entry, menu[entry])
 
     selection=input("Please Select:")
     if selection == '1':
