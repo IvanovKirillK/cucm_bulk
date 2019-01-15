@@ -39,7 +39,7 @@ def worker():
     # определяем путь к выходному файлу
     update_users_filepath = '.\\output\\' + output_filename_prefix + 'Update_Users' + '.csv'
 
-    # определяем заголовок выходного файла  line apearence
+    # определяем заголовок выходного файла line apearence
     line_appearence_header = ['User ID', 'Device', 'Directory Number', 'Partition']
 
     # определяем путь к выходному файлу
@@ -74,9 +74,10 @@ def worker():
                 count_input_phone += 1
         csv_file.close()
 
-    # откываем файл выгрузк с CUCM
+    # открываем файл выгрузк с CUCM
     csv_file = open(glob.glob('.\\data\\*Export_phones*')[0], mode='r', encoding="utf8")
     reader = csv.reader(csv_file)
+    export_phone_list = []
 
     # читаем построково файл выгрузки с CUCM
     for row in reader:
@@ -86,6 +87,8 @@ def worker():
             count_input += 1
             # для каждой записи проверяем внутренний номер, если там цифры продолжаем
             if row[4].isdigit():
+                # сохраняем номер их выгрузки CUCM в лист для последующего анализа
+                export_phone_list.append(row[4])
                 # пытаемся получить запись из файла телефонов содержащую номер из файла выгрузки
                 if get_containing_row.get_containing_row(phone_list, row[4]) is None:
                     continue
@@ -139,6 +142,16 @@ def worker():
                 write_data_to_output.write_data_to_output(unassociated_users_filepath,row)
                 count_unassociated += 1
 
+    # проверяем все телефоны в списке по моделям на наличие в выгрузке CUCM
+    for row in phone_list:
+        if row[7] in export_phone_list:
+            continue
+        else:
+            row.append('---NO SUCH PHONE IN CUCM Export Phone list')
+            write_data_to_output.write_data_to_output(unassociated_users_filepath, row)
+            count_unassociated += 1
+
+    # выводит статистику по результатам работы
     print('\n')
     print(30 * '#')
     print('Done! Check the output directory')
