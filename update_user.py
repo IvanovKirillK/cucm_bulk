@@ -127,7 +127,7 @@ def worker():
                            user_profile, assigned_presence_server]
 
                     # пишем лист в файл, увеличиваем счетчик
-                    write_data_to_output.write_data_to_output(update_users_filepath,update_users_datalist)
+                    write_data_to_output.write_data_to_output(update_users_filepath, update_users_datalist)
                     count_uu += 1
                     print(update_users_datalist)
 
@@ -139,7 +139,7 @@ def worker():
                     count_la += 1
             else:
                 row.append('---NON NUMBER in DN fileld')
-                write_data_to_output.write_data_to_output(unassociated_users_filepath,row)
+                write_data_to_output.write_data_to_output(unassociated_users_filepath, row)
                 count_unassociated += 1
 
     # проверяем все телефоны в списке по моделям на наличие в выгрузке CUCM

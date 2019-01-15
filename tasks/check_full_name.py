@@ -1,6 +1,6 @@
 def check_full_name(name):
     try:
-        namelist=name.split(' ')
+        namelist = name.split(' ')
         if len(namelist) == 3:
             return namelist
         else:
