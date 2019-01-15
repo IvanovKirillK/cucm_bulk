@@ -111,11 +111,11 @@ def worker():
             device_pool = get_pt_dp_by_operator_name.get_device_pool_by_operator_name(operator_name)
             short_number = row[7] + row[1]
 
-            # определяет имя пользователя ad (из входного файла, или из справочника всех пользователей)
-            if row[9] != '':
-                owner_user_id = row[9]
-            else:
-                owner_user_id = (get_ad_user.get_ad_user(short_number, user_list))
+            # определяет имя пользователя ad (из справочника всех пользователей)
+            # if row[9] != '':
+            #     owner_user_id = row[9]
+            # else:
+            owner_user_id = (get_ad_user.get_ad_user(short_number, user_list))
 
             line_description = initials
             alerting_name = initials

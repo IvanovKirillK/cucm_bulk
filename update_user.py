@@ -45,20 +45,28 @@ def worker():
         with open(file, mode='r', encoding="utf8") as csv_file:
             reader = csv.reader(csv_file)
             for row in reader:
-                phone_list.append(row)
+                if row[1] == 'DESCRIPTION':
+                    continue
+                elif row[3] == '' or row[3] is None:
+                    continue
+                else:
+                    phone_list.append(row)
 
-    with open(glob.glob('.\\data\\*Export_phones*')[0], mode='r', encoding="utf8") as csv_file:
-        reader = csv.reader(csv_file)
-        for row in reader:
-            count_input +=1
-            if row[4].isdigit():
-                phone_record=get_containing_row.get_containing_row(phone_list, row[4])
+    csv_file = open(glob.glob('.\\data\\*Export_phones*')[0], mode='r', encoding="utf8")
+    reader = csv.reader(csv_file)
+    for row in reader:
+        count_input += 1
+        if row[4].isdigit():
+            if get_containing_row.get_containing_row(phone_list, row[4]) is None:
+                continue
+            else:
+                phone_record = get_containing_row.get_containing_row(phone_list, row[4])
                 user_id = phone_record[3]
-                title = str(row[4]) + ' in ' + str(row[5])
+                primary_extension = str(row[4]) + ' in ' + str(row[5])
                 device_name = row[0]
 
                 manager_user_id = department = default_profile = user_locale = password = telephone_number = \
-                    mobile_number = home_number = pager_numer = primary_extension = associated_pc = ipcc_extension = \
+                    mobile_number = home_number = pager_numer = title = associated_pc = ipcc_extension = \
                     mail_id = presence_group = subscribe_calling_search_space = digest_credentials = \
                     remote_destination_limit = maximum_wait_time_for_desk_pickup = enable_mobile_voice_access = \
                     enable_emcc = directory_uri = name_dialing = mlpp_user_identification_number = mlpp_password = \
@@ -85,14 +93,14 @@ def worker():
                 line_appearence_datalist = (user_id, device_name, row[4], row[5])
                 write_data_to_output.write_data_to_output(line_appearence_filepath, line_appearence_datalist)
                 count_la += 1
-            else:
-                write_data_to_output.write_data_to_output(unassociated_users_filepath,row)
-                count_unassociated += 1
+        else:
+            write_data_to_output.write_data_to_output(unassociated_users_filepath,row)
+            count_unassociated += 1
 
     print('\n')
     print(30 * '#')
     print('Done! Check the output directory')
-    print('total: input ' + str(count_input - 1) + ' records')
+    print('total: input ' + str(count_input - 1) + ' Export Phone records')
     print('total: update_users ' + str(count_uu) + ' records')
     print('total: line_appearance ' + str(count_la) + ' records')
     print('total: unassociated_users ' + str(count_unassociated - 1) + ' records')
