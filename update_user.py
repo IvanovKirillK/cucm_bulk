@@ -48,7 +48,7 @@ def worker():
     # определяем путь к выходному файлу необработанных записей
     unassociated_users_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_users' + '.csv'
 
-    # создаем выходные файлы. пишем заголовка
+    # создаем выходные файлы. пишем заголовки
     write_header.write_header(update_users_filepath, update_users_header)
     write_header.write_header(line_appearence_filepath, line_appearence_header)
     write_header.write_header(unassociated_users_filepath, '')
