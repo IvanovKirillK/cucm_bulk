@@ -136,13 +136,18 @@ def worker():
             # проверяет содерждит ли какое-либо из полей None
             if check_data_list_contains_none.check_data_list_contains_none(data_list):
                 element = check_data_list_contains_none.get_none_item(header, data_list)
-                output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
-                write_data_to_output.write_data_to_output(output_filepath, row)
-                data_list.append('---None in datalist, ' + element + ' is None')
-                write_data_to_output.write_data_to_output(output_filepath, data_list)
-                write_data_to_output.write_data_to_output(output_filepath, '\n')
-                count_unassociated += 1
-                continue
+                # если пользователь ad неопределен записывает лист в выходной файл
+                if element == 'OWNER USER ID':
+                    element = 'OWNER USER ID'
+                # если неопределен любой другой стобец - записывает в лог
+                else:
+                    output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
+                    write_data_to_output.write_data_to_output(output_filepath, row)
+                    data_list.append('---None in datalist, ' + element + ' is None')
+                    write_data_to_output.write_data_to_output(output_filepath, data_list)
+                    write_data_to_output.write_data_to_output(output_filepath, '\n')
+                    count_unassociated += 1
+                    continue
 
             # записывает лист в выходной файл
             write_data_to_output.write_data_to_output(output_filepath, data_list)

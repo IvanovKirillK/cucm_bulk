@@ -54,7 +54,7 @@ def worker():
     write_header.write_header_ansi(output_callingpartytransparent_filepath, callingpartytransparent_header)
     write_header.write_header_ansi(output_translationpattern_filepath, translationpattern_header)
 
-    group_list_out = get_list_of_group_numbers.get_list_of_group_numbers(filename,6)
+    group_list_out = get_list_of_group_numbers.get_list_of_group_numbers(filename, 6)
     group_list_in = get_list_of_group_numbers.get_list_of_group_numbers(filename, 5)
 
     list_codes = get_list_of_codes.get_list_of_codes()
