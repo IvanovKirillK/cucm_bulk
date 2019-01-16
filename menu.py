@@ -3,7 +3,8 @@ import update_user
 import rd_rdp
 import tranform_translate
 import operator_list
-from tasks import show_submenu, get_pt_dp_by_operator_name
+import pickup
+from tasks import show_submenu
 
 
 menu = {}
@@ -58,8 +59,11 @@ while True:
 
     elif selection == '5':
         print("Constructing pickup group files...")
-        print("WIP")
-        get_pt_dp_by_operator_name.get_partition_by_operator_name('123')
+        pickup.worker()
+        # try:
+        #     pickup.worker()
+        # except Exception as e:
+        #     print(e)
 
     elif selection == '8':
         print("Building list of operators, be patient...")
