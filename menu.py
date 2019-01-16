@@ -58,12 +58,12 @@ while True:
                 print(e)
 
     elif selection == '5':
-        print("Constructing pickup group files...")
-        pickup.worker()
-        # try:
-        #     pickup.worker()
-        # except Exception as e:
-        #     print(e)
+        if show_submenu.show_pickup_submenu():
+            print("Constructing pickup group files...")
+            try:
+                pickup.worker()
+            except Exception as e:
+                print(e)
 
     elif selection == '8':
         print("Building list of operators, be patient...")
@@ -87,3 +87,8 @@ while True:
         #TODO add travis CI pipeline
         #TODO add docker CD pipeline
         #TODO переделать логирование
+
+        #TODO проверить на пустую строку все файлы
+        #TODO проверить поведение пр иотсутствии файлов внужных местах
+        #TODO по короткому номеру в пикапах найти новый префикс в input_data, если номера нет, записать в лог
+
