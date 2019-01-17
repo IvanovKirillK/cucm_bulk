@@ -4,7 +4,6 @@
     <list default="true" id="cd4d0a2c-7ee4-45a0-8705-762f50f9ce03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu.py" afterDir="false" />
     </list>
     <ignored path="data/" />
     <ignored path="directory/" />
@@ -128,8 +127,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="791">
-                <caret line="94" column="1" selection-start-line="94" selection-start-column="1" selection-end-line="94" selection-end-column="1" />
+              <first_editor relative-caret-position="740">
+                <caret line="98" column="1" selection-start-line="98" selection-start-column="1" selection-end-line="98" selection-end-column="1" />
               </first_editor>
               <second_editor />
             </state>
@@ -677,7 +676,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547718798141</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Readme update">
+      <created>1547725969872</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1547725969872</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Readme update">
+      <created>1547726201818</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1547726201818</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TodoView">
@@ -782,7 +795,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="get_list_codes updated" />
     <MESSAGE value="get_initials updated" />
     <MESSAGE value="ansi support added" />
     <MESSAGE value="data_list translations" />
@@ -807,7 +819,8 @@
     <MESSAGE value="pickup composition added" />
     <MESSAGE value="bug fixing" />
     <MESSAGE value="config options cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="config options cleanup" />
+    <MESSAGE value="Readme update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readme update" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/input_data.csv">
@@ -1074,8 +1087,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="791">
-            <caret line="94" column="1" selection-start-line="94" selection-start-column="1" selection-end-line="94" selection-end-column="1" />
+          <first_editor relative-caret-position="740">
+            <caret line="98" column="1" selection-start-line="98" selection-start-column="1" selection-end-line="98" selection-end-column="1" />
           </first_editor>
           <second_editor />
         </state>
