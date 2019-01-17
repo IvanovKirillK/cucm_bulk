@@ -102,3 +102,4 @@ while True:
 
         #TODO Backup
         #TODO Упаковать файлы в tar + поправить Readme
+        #TODO Проверить создание файлов телеофнов

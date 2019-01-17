@@ -39,17 +39,20 @@ def worker():
             if out_operator not in op_list:
                 op_list.append(out_operator)
 
+    print('\n')
+    print(30 * '#')
+    print('Operators in input data: ')
     # чистит список имен операторов - удаляет пустые строки и None
     for item in op_list:
         if item == '':
-            op_list.pop(item)
-        if item == 'None':
-            op_list.pop(item)
+            continue
+        elif item == 'None':
+            continue
+        elif item is None:
+            continue
+        else:
+            print(item)
 
-    # выводит результат работ
-    print('\n')
-    print(30*'#')
-    print('Operators in input data: ', op_list)
 
     # для каждого имени оператора в списке проверяет есть ли такой оператор в конфигурационном файле,
     # определены ли для него pt и dp
@@ -74,6 +77,11 @@ def worker():
             print('\t' + 'Device Pool for operator in config.ini - ', config['oper_device_pool_name'][op_short_name])
         if op_short_name not in config['oper_device_pool_name']:
             print('!!!!Operator is not defined in oper_device_pool_name section in config.ini')
+
+        if op_short_name in config['oper_transformation_mask']:
+            print('\t' + 'Transformation mask for operator in config.ini - ', config['oper_transformation_mask'][op_short_name])
+        if op_short_name not in config['oper_device_pool_name']:
+            print('!!!!Operator is not defined in oper_transformation_mask section in config.ini')
 
     print(30 * '#')
     print('\n')
