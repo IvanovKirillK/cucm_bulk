@@ -99,3 +99,6 @@ while True:
         #TODO add travis CI pipeline
         #TODO add docker CD pipeline
         #TODO переделать логирование
+
+        #TODO Backup
+        #TODO Упаковать файлы в tar + поправить Readme
