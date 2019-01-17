@@ -4,7 +4,7 @@ import configparser
 from transliterate import translit
 from tasks import check_file_exists, check_full_name, get_initials, get_all_ad_users, get_ad_user, get_normalized_number, \
     get_list_of_codes, get_operator_name, get_partition_by_dn, write_header, write_data_to_output, \
-    check_data_list_contains_none, get_normalized_fmtn_number, get_pt_dp_by_operator_name
+    check_data_list_contains_none, get_normalized_fmtn_number, get_pt_dp_by_operator_name, check_empty_line
 
 # читает конфиг
 config = configparser.ConfigParser()
@@ -65,7 +65,9 @@ def worker():
     readcsv = csv.reader(file, delimiter=',')
     list_codes = get_list_of_codes.get_list_of_codes()
     for row in readcsv:
-        if row[0] == 'name':
+        if check_empty_line.check_empty_line(row):
+            continue
+        elif row[0] == 'name':
             continue
         else:
             # проверяем есть ли для записи информация о номерах мобильного\декта
@@ -127,7 +129,7 @@ def worker():
                     row.append('---NONE in data_list')
                     none_field = check_data_list_contains_none.get_none_item(rdp_header, rdp_data_list)
                     write_data_to_output.write_data_to_output(output_filepath_to_check, row)
-                    rdp_data_list.append('---NONE in data list, ', none_field)
+                    rdp_data_list.append('---NONE in data list, ' + none_field + ' NOT FOUND')
                     write_data_to_output.write_data_to_output(output_filepath_to_check, rdp_data_list)
                     count_unresolved_rdp += 1
                     continue
@@ -135,7 +137,7 @@ def worker():
                     row.append('---EMPTY fileds in data_list')
                     none_field = check_data_list_contains_none.get_empty_item(rdp_header, rdp_data_list)
                     write_data_to_output.write_data_to_output(output_filepath_to_check, row)
-                    rdp_data_list.append('---EMPTY filed in data list, ', none_field)
+                    rdp_data_list.append('---EMPTY filed in data list, ' + none_field + ' NOT FOUND')
                     write_data_to_output.write_data_to_output(output_filepath_to_check, rdp_data_list)
                     count_unresolved_rdp += 1
                     continue

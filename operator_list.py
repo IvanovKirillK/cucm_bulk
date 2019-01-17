@@ -1,6 +1,6 @@
 import csv
 import configparser
-from tasks import check_file_exists, get_normalized_number, get_list_of_codes, get_operator_name
+from tasks import check_file_exists, get_normalized_number, get_list_of_codes, get_operator_name, check_empty_line
 
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
@@ -14,7 +14,9 @@ def worker():
     readcsv = csv.reader(file, delimiter=',')
     op_list = []
     for row in readcsv:
-        if row[0] == 'name':
+        if check_empty_line.check_empty_line(row):
+            continue
+        elif row[0] == 'name':
             continue
         else:
             in_number = get_normalized_number.get_normalized_number(row[5])

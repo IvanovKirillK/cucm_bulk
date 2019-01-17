@@ -1,5 +1,5 @@
 import csv
-from tasks import check_file_exists, get_normalized_number
+from tasks import check_file_exists, get_normalized_number, check_empty_line
 
 
 def get_list_of_group_numbers(filename, row_number):
@@ -9,7 +9,9 @@ def get_list_of_group_numbers(filename, row_number):
     file = open(filename, "r")
     readcsv = csv.reader(file, delimiter=',')
     for row in readcsv:
-        if row[0] == 'name':
+        if check_empty_line.check_empty_line(row):
+            continue
+        elif row[0] == 'name':
             continue
         else:
             if get_normalized_number.get_normalized_number(row[row_number]) in group_dict.keys():

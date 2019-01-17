@@ -2,7 +2,7 @@ import csv
 import configparser
 from tasks import get_initials, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, check_file_exists, get_list_of_group_numbers, \
-    get_pt_dp_by_operator_name
+    get_pt_dp_by_operator_name, check_empty_line
 
 # читает конфиг
 config = configparser.ConfigParser()
@@ -71,7 +71,9 @@ def worker():
 
     # читаем построково исходный файл
     for row in readcsv:
-        if row[0] == 'name':
+        if check_empty_line.check_empty_line(row):
+            continue
+        elif row[0] == 'name':
             continue
         # для каждой записи получаем нормализованный исходящий номер
         out_number = get_normalized_number.get_normalized_number(row[6])
@@ -134,7 +136,9 @@ def worker():
     readcsv = csv.reader(file, delimiter=',')
 
     for row in readcsv:
-        if row[0] == 'name':
+        if check_empty_line.check_empty_line(row):
+            continue
+        elif row[0] == 'name':
             continue
 
         # для каждой записи получаем нормализованный входящий номер
@@ -198,14 +202,14 @@ def worker():
     print('\n')
     print(30 * '#')
     print('Done! Check the output directory')
-    print('total: input transformations records ' + str(count_input_transform))
-    print('total: records without inbound transformations ' + str(count_non_transform))
-    print('total: records with group inbound number ' + str(count_group_transform))
+    print('total: input records ' + str(count_input_transform))
+    print('total: records WITHOUT inbound transformations ' + str(count_non_transform))
+    print('total: records WITH GROUP inbound number ' + str(count_group_transform))
     print('result: inbound_transformations ' + str(count_transform) + ' records')
     print('\n')
-    print('total: input translations records ' + str(count_input_translate))
-    print('total: records without outbound translations ' + str(count_non_translate))
-    print('total: records with group outbound number ' + str(count_group_translate))
+    print('total: input records ' + str(count_input_translate))
+    print('total: records WITHOUT outbound translations ' + str(count_non_translate))
+    print('total: records WITH GROUP outbound number ' + str(count_group_translate))
     print('result: outbound_translations ' + str(count_translate) + ' records')
     print(30 * '#')
     print('\n')

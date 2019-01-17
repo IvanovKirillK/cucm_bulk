@@ -3,7 +3,7 @@ import configparser
 from transliterate import translit
 from tasks import check_full_name, get_initials, get_all_ad_users, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, get_ad_user, check_file_exists, get_pt_dp_by_operator_name, \
-    check_data_list_contains_none, get_phone_model_list
+    check_data_list_contains_none, get_phone_model_list, check_empty_line
 
 # Определяет путь к конфиг файлу, загружает конфигурацию
 config = configparser.ConfigParser()
@@ -85,7 +85,9 @@ def worker():
 
     # для каждой записи во входном файле:
     for row in readcsv:
-        if row[0] == 'name':
+        if check_empty_line.check_empty_line(row):
+            continue
+        elif row[0] == 'name':
             continue
         else:
             count_input += 1

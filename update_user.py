@@ -1,7 +1,7 @@
 import glob
 import csv
 import configparser
-from tasks import check_file_exists, write_header, write_data_to_output, get_containing_row
+from tasks import check_file_exists, write_header, write_data_to_output, get_containing_row, check_empty_line
 
 # читает конфиг
 config = configparser.ConfigParser()
@@ -61,12 +61,14 @@ def worker():
         csv_file = open(file, mode='r', encoding="utf8")
         reader = csv.reader(csv_file)
         for row in reader:
-            if row[1] == 'DESCRIPTION':
+            if check_empty_line.check_empty_line(row):
+                continue
+            elif row[1] == 'DESCRIPTION':
                 continue
             elif row[3] == '' or row[3] is None:
                 count_input_phone += 1
                 count_unassociated += 1
-                row.append('---EMPTY AD_USER')
+                row.append('---EMPTY AD_USER IN PHONE MODEL FILE')
                 write_data_to_output.write_data_to_output(unassociated_users_filepath, row)
                 continue
             else:
@@ -81,7 +83,9 @@ def worker():
 
     # читаем построково файл выгрузки с CUCM
     for row in reader:
-        if row[1] == 'DESCRIPTION':
+        if check_empty_line.check_empty_line(row):
+            continue
+        elif row[1] == 'DESCRIPTION':
             continue
         else:
             count_input += 1

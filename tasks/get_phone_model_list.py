@@ -1,5 +1,5 @@
 import csv
-from tasks import check_file_exists
+from tasks import check_file_exists, check_empty_line
 
 
 def get_phone_model_list(filepath):
@@ -8,7 +8,9 @@ def get_phone_model_list(filepath):
     readcsv = csv.reader(file, delimiter=',')
     phone_model_list = []
     for row in readcsv:
-        if row[0] == 'name':
+        if check_empty_line.check_empty_line(row):
+            continue
+        elif row[0] == 'name':
             continue
         else:
             if row[4] in phone_model_list:
