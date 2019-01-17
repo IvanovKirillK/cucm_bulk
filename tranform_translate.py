@@ -8,7 +8,6 @@ from tasks import get_initials, get_operator_name, get_normalized_number, \
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
 site_description = config.get("vars", 'site_description')
-pt_prefix = config.get("vars", "pt_prefix")
 
 
 # worker - в нем делется вся работа

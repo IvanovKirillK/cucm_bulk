@@ -6,7 +6,7 @@ import operator_list
 import pickup
 from tasks import show_submenu
 
-
+# определяем сисок пунктов меню
 menu = {}
 menu['1'] = "Construct phones files."
 menu['2'] = "Construct user_update and line_appearance files."
@@ -17,7 +17,7 @@ menu['8'] = "Show list of operators on the site"
 menu['9'] = "Backup input and output files"
 menu['0'] = "Exit"
 
-
+# в цикле выводим пункты меню
 while True:
     options=menu.keys()
     sorted(options)
@@ -26,41 +26,51 @@ while True:
 
     selection=input("Please Select:")
     if selection == '1':
+        # показываем подменю
         if show_submenu.show_input_parser_submenu():
             print("Constructing phones files...")
             try:
+                # вызываем модуль для обработки данных
                 input_data_parser.worker()
             except Exception as e:
                 print(e)
 
     elif selection == '2':
+        # показываем подменю
         if show_submenu.show_update_user_submenu():
             print("Constructing user_update and line_appearance files...")
             try:
+                # вызываем модуль для обработки данных
                 update_user.worker()
             except Exception as e:
                 print(e)
 
     elif selection == '3':
+        # показываем подменю
         if show_submenu.show_RD_RDP_submenu():
             print("Constructing RD and RDP files...")
             try:
+                # вызываем модуль для обработки данных
                 rd_rdp.worker()
             except Exception as e:
                 print(e)
 
     elif selection == '4':
+        # показываем подменю
         if show_submenu.show_translate_submenu():
             print("Constructing translation and transformation files...")
             try:
+                # вызываем модуль для обработки данных
                 tranform_translate.worker()
             except Exception as e:
                 print(e)
 
     elif selection == '5':
+        # показываем подменю
         if show_submenu.show_pickup_submenu():
             print("Constructing pickup group files...")
             try:
+                # вызываем модуль для обработки данных
                 pickup.worker()
             except Exception as e:
                 print(e)
@@ -68,6 +78,7 @@ while True:
     elif selection == '8':
         print("Building list of operators, be patient...")
         try:
+            # вызываем модуль для обработки данных
             operator_list.worker()
         except Exception as e:
             print(e)
@@ -76,6 +87,7 @@ while True:
         print("Backup...")
         print("WIP")
 
+    # завершает работу ПО
     elif selection == '0':
         print("Goodbuy!")
         break
@@ -87,5 +99,3 @@ while True:
         #TODO add travis CI pipeline
         #TODO add docker CD pipeline
         #TODO переделать логирование
-
-        #TODO проверить на пустую строку все файлы

@@ -5,12 +5,9 @@ from tasks import check_file_exists
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
 site_description = config.get("vars", 'site_description')
-dn_partition = config.get("vars", "dn_partition")
-dp_prefix = config.get("vars", "dp_prefix")
-pt_prefix = config.get("vars", "pt_prefix")
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 default_site_operator = config.get("vars", "default_site_operator")
-css = config.get("vars", "css")
+css = config.get("vars", "rdp_css")
 forward_all_destination_prefix = config.get('vars', 'forward_all_destination_prefix')
 pickup_group_start_number = config.get('vars', 'pickup_group_start_number')
 
@@ -34,9 +31,6 @@ def show_input_parser_submenu():
         else:
             print('!!!!! File - ' + filename + ' Not Found')
     print('Config options: site_description - ', site_description)
-    print('Config options: dn_partition - ', dn_partition)
-    print('Config options: dp_prefix - ', dp_prefix)
-    print('Config options: pt_prefix - ', pt_prefix)
     print('Config options: output_filename_prefix - ', output_filename_prefix)
     print('Config options: default_site_operator - ', default_site_operator)
     print('Config options: forward_all_destination_prefix - ', forward_all_destination_prefix)
@@ -102,7 +96,6 @@ def show_RD_RDP_submenu():
         print('!!!!! File - ' + filename + ' Not Found')
 
     print('Config options: site_description - ', site_description)
-    print('Config options: dp_prefix - ', dp_prefix)
     print('Config options: output_filename_prefix - ', output_filename_prefix)
     print('Config options: css - ', css)
     print('Output: following files will be generated - ', '.\\output\\' + output_filename_prefix + 'RDP' + '.csv')
@@ -127,7 +120,6 @@ def show_translate_submenu():
     else:
         print('!!!!! File - ' + filename + ' Not Found')
     print('Config options: site_description - ', site_description)
-    print('Config options: pt_prefix - ', pt_prefix)
     print('Output: following files will be generated - ', '.\\output\\' + 'callingpartytransparent' + '.csv')
     print('Output: following files will be generated - ', '.\\output\\' + 'translationpattern' + '.csv')
     selection = input("Continue? [y/n]:")

@@ -11,8 +11,7 @@ config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 site_description = config.get("vars", 'site_description')
-dp_prefix = config.get("vars", "dp_prefix")
-css = config.get("vars", "css")
+css = config.get("vars", "rdp_css")
 
 
 # worker - в нем делется вся работа
