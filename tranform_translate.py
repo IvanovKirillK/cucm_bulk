@@ -2,7 +2,7 @@ import csv
 import configparser
 from tasks import get_initials, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, check_file_exists, get_list_of_group_numbers, \
-    get_pt_dp_by_operator_name, check_empty_line
+    get_pt_dp_by_operator_name, check_empty_line, get_calling_party_transformation_mask
 
 # читает конфиг
 config = configparser.ConfigParser()
@@ -107,11 +107,14 @@ def worker():
             numbering_plan = route_filter = discard_digit_instruction = 'NULL'
             urgent_priority = 't'
             use_calling_party_external_phone_number_mask = 'Off'
-            calling_party_transformation_mask = out_number
             prefix_digit_outgoing_call = ''
             calling_line_in_presentation = 'Default'
             calling_party_number_type = calling_party_numbering_plan = 'Cisco CallManager'
             mlpp_presentation_enabled = 'f'
+
+            # определяем маску по оператору (а оператора по номеру)
+            calling_party_transformation_mask = \
+                get_calling_party_transformation_mask.get_calling_party_tranformation_mask_by_operator(out_number, operator_name)
 
             # собираем лист для записи в файл
             transform_data_list = [pattern, route_partition, description, numbering_plan, route_filter,
