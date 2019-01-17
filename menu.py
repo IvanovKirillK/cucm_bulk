@@ -1,9 +1,4 @@
-import input_data_parser
-import update_user
-import rd_rdp
-import tranform_translate
-import operator_list
-import pickup
+from workers import input_data_parser, operator_list, pickup, rd_rdp, tranform_translate, update_user
 from tasks import show_submenu
 
 # определяем сисок пунктов меню
