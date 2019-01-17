@@ -1,4 +1,4 @@
-from workers import input_data_parser, operator_list, pickup, rd_rdp, tranform_translate, update_user
+from workers import input_data_parser, operator_list, pickup, rd_rdp, tranform_translate, update_user, backup
 from tasks import show_submenu
 
 # определяем сисок пунктов меню
@@ -80,7 +80,11 @@ while True:
 
     elif selection == '9':
         print("Backup...")
-        print("WIP")
+        try:
+            # вызываем модуль для обработки данных
+            backup.worker()
+        except Exception as e:
+            print(e)
 
     # завершает работу ПО
     elif selection == '0':
@@ -88,12 +92,10 @@ while True:
         break
     else:
         print("Unknown Option Selected!")
-        #TODO backup results and input files to archive folder
         #TODO add tests for tasks
         #TODO add tests for workers
         #TODO add travis CI pipeline
         #TODO add docker CD pipeline
         #TODO переделать логирование
 
-        #TODO Backup
         #TODO Упаковать файлы в tar + поправить Readme
