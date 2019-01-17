@@ -99,5 +99,9 @@
  1. #######TODO Дописать Backup
  
  
+ [Формат файлов](.\docs\file_format.md)
  
+ [Установка\запуск](.\docs\install.md)
+ 
+ [Пример работы](.\example.md)
  
