@@ -163,6 +163,7 @@ def worker():
     print('total: 7811 ' + str(count_7811) + ' phones')
     print('total: 7821 ' + str(count_7821) + ' phones')
     print('total: 8851 ' + str(count_8851) + ' phones')
+    print('total: ready to upload ' + str(count_7811 + count_7821 + count_8851) + ' phones')
     print('total: unassociated dn ' + str(count_unassociated) + ' phones')
     print(30 * '#')
     print('\n')
