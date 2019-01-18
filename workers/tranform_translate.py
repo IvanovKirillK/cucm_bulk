@@ -11,6 +11,7 @@ config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
 site_description = config.get("vars", 'site_description')
 output_filename_prefix = config.get('vars', 'output_filename_prefix')
+analog_line_access_pt = config.get('vars', 'analog_line_access_pt')
 
 
 # worker - в нем делется вся работа
@@ -86,61 +87,78 @@ def worker():
             count_non_transform += 1
             continue
 
-        # проверяем исходящий номер на наличие в списке групповых
-        elif out_number in group_list_out:
-            count_group_transform += 1
-            continue
-        else:
-            # определяем pattern как новый префикс + внутренний номер
-            pattern = str(row[8]) + str(row[1])
-
+        # проверяем наличие кода выхода на аналоговую линию
+        if row[9] != '' and row[9].isdigit():
+            print(row[9])
             # получаем имя оператора по исходящему номеру
             operator_name = get_operator_name.get_operator_name(out_number, list_codes)
 
             # получаем имя партиции из конфигурционного файла по имени оператора
-            route_partition = get_pt_dp_by_operator_name.get_partition_by_operator_name(operator_name)
+            route_partition = analog_line_access_pt
 
-            # получаем фамилию и инициалы
-            initials = get_initials.get_initials_from_string(row[0])
+            # определяем префикс для исходящих вызовов
+            prefix_digit_outgoing_call = '000' + row[8] + row[9]
 
-            # формируем description
-            description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
+        else:
+            # проверяем исходящий номер на наличие в списке групповых
+            if out_number in group_list_out:
+                count_group_transform += 1
+                continue
+            else:
 
-            # определяем константы
-            numbering_plan = route_filter = discard_digit_instruction = 'NULL'
-            urgent_priority = 't'
-            use_calling_party_external_phone_number_mask = 'Off'
-            prefix_digit_outgoing_call = ''
-            calling_line_in_presentation = 'Default'
-            calling_party_number_type = calling_party_numbering_plan = 'Cisco CallManager'
-            mlpp_presentation_enabled = 'f'
+                # получаем имя оператора по исходящему номеру
+                operator_name = get_operator_name.get_operator_name(out_number, list_codes)
 
-            # определяем маску по оператору (а оператора по номеру)
-            calling_party_transformation_mask = \
-                get_calling_party_transformation_mask.get_calling_party_tranformation_mask_by_operator(out_number, operator_name)
+                # получаем имя партиции из конфигурционного файла по имени оператора
+                route_partition = get_pt_dp_by_operator_name.get_partition_by_operator_name(operator_name)
 
-            # собираем лист для записи в файл
-            transform_data_list = [pattern, route_partition, description, numbering_plan, route_filter,
-                                   urgent_priority, use_calling_party_external_phone_number_mask,
-                                   discard_digit_instruction, calling_party_transformation_mask,
-                                   prefix_digit_outgoing_call, calling_line_in_presentation,
-                                   calling_party_number_type, calling_party_numbering_plan,
-                                   mlpp_presentation_enabled]
+                # определяем константы
+                prefix_digit_outgoing_call = ''
 
-            # пишем лист в файл, увеличиваем счетчик
-            write_data_to_output.write_data_to_output_ansi(output_callingpartytransparent_filepath,
-                                                           transform_data_list)
-            print(transform_data_list)
-            count_transform += 1
+        # определяем pattern как новый префикс + внутренний номер
+        pattern = str(row[8]) + str(row[1])
+
+        # получаем фамилию и инициалы
+        initials = get_initials.get_initials_from_string(row[0])
+
+        # формируем description
+        description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
+
+        # определяем маску по оператору (а оператора по номеру)
+        calling_party_transformation_mask = \
+            get_calling_party_transformation_mask.get_calling_party_tranformation_mask_by_operator(out_number,
+                                                                                                   operator_name)
+
+        # определяем константы
+        numbering_plan = route_filter = discard_digit_instruction = 'NULL'
+        urgent_priority = 't'
+        use_calling_party_external_phone_number_mask = 'Off'
+        calling_line_in_presentation = 'Default'
+        calling_party_number_type = calling_party_numbering_plan = 'Cisco CallManager'
+        mlpp_presentation_enabled = 'f'
+
+        # собираем лист для записи в файл
+        transform_data_list = [pattern, route_partition, description, numbering_plan, route_filter,
+                               urgent_priority, use_calling_party_external_phone_number_mask,
+                               discard_digit_instruction, calling_party_transformation_mask,
+                               prefix_digit_outgoing_call, calling_line_in_presentation,
+                               calling_party_number_type, calling_party_numbering_plan,
+                               mlpp_presentation_enabled]
+
+        # пишем лист в файл, увеличиваем счетчик
+        write_data_to_output.write_data_to_output_ansi(output_callingpartytransparent_filepath,
+                                                       transform_data_list)
+        print(transform_data_list)
+        count_transform += 1
 
     # закрываем файл
     file.close()
 
     distutils.file_util.copy_file('.\\directory\\callingpartytranspattern_header.txt', '.\\directory\\header.txt')
-    file_dict = {output_callingpartytransparent_filepath : 'callingpartytransparent' + '.csv', '.\\directory\\header.txt' : 'header.txt'}
+    file_dict = {output_callingpartytransparent_filepath: 'callingpartytransparent' + '.csv',
+                 '.\\directory\\header.txt': 'header.txt'}
     write_tar.write_tar('.\\output\\' + output_filename_prefix + 'import_transform.tar', file_dict)
     os.remove('.\\directory\\header.txt')
-
 
     # открываем исходный файл, читаем построково
     file = open(filename, "r")
@@ -209,12 +227,11 @@ def worker():
             count_translate += 1
     file.close()
 
-
     distutils.file_util.copy_file('.\\directory\\translationpattern_header.txt', '.\\directory\\header.txt')
-    file_dict = {output_translationpattern_filepath : 'translationpattern' + '.csv', '.\\directory\\header.txt' : 'header.txt'}
+    file_dict = {output_translationpattern_filepath: 'translationpattern' + '.csv',
+                 '.\\directory\\header.txt': 'header.txt'}
     write_tar.write_tar('.\\output\\' + output_filename_prefix + 'import_translate.tar', file_dict)
     os.remove('.\\directory\\header.txt')
-
 
     # выводим статистику по результатам работы
     print('\n')

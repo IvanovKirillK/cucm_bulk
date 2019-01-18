@@ -97,4 +97,3 @@ while True:
         #TODO add travis CI pipeline
         #TODO add docker CD pipeline
         #TODO добавить логирование
-

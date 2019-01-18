@@ -108,5 +108,7 @@
  
  [Формат файлов](./docs/file_format.md)
  
+ [Правила заполнения файлов](./docs/file_input.md)
+ 
  [Установка\запуск](./docs/install.md)
  
