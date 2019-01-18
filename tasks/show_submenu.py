@@ -122,6 +122,8 @@ def show_translate_submenu():
     print('Config options: site_description - ', site_description)
     print('Output: following files will be generated - ', '.\\output\\' + 'callingpartytransparent' + '.csv')
     print('Output: following files will be generated - ', '.\\output\\' + 'translationpattern' + '.csv')
+    print('Output: following files will be generated - ', '.\\output\\' + output_filename_prefix + 'import_transform' + '.tar')
+    print('Output: following files will be generated - ', '.\\output\\' + output_filename_prefix + 'import_translate' + '.tar')
     selection = input("Continue? [y/n]:")
     if selection == 'y':
         return True

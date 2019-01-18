@@ -96,6 +96,5 @@ while True:
         #TODO add tests for workers
         #TODO add travis CI pipeline
         #TODO add docker CD pipeline
-        #TODO переделать логирование
+        #TODO добавить логирование
 
-        #TODO Упаковать файлы в tar + поправить Readme

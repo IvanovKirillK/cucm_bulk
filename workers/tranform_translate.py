@@ -1,13 +1,16 @@
 import csv
 import configparser
+import distutils.file_util
+import os
 from tasks import get_initials, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, check_file_exists, get_list_of_group_numbers, \
-    get_pt_dp_by_operator_name, check_empty_line, get_calling_party_transformation_mask
+    get_pt_dp_by_operator_name, check_empty_line, get_calling_party_transformation_mask, write_tar
 
 # читает конфиг
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
 site_description = config.get("vars", 'site_description')
+output_filename_prefix = config.get('vars', 'output_filename_prefix')
 
 
 # worker - в нем делется вся работа
@@ -133,6 +136,12 @@ def worker():
     # закрываем файл
     file.close()
 
+    distutils.file_util.copy_file('.\\directory\\callingpartytranspattern_header.txt', '.\\directory\\header.txt')
+    file_dict = {output_callingpartytransparent_filepath : 'callingpartytransparent' + '.csv', '.\\directory\\header.txt' : 'header.txt'}
+    write_tar.write_tar('.\\output\\' + output_filename_prefix + 'import_transform.tar', file_dict)
+    os.remove('.\\directory\\header.txt')
+
+
     # открываем исходный файл, читаем построково
     file = open(filename, "r")
     readcsv = csv.reader(file, delimiter=',')
@@ -199,6 +208,13 @@ def worker():
             print(translation_datalist)
             count_translate += 1
     file.close()
+
+
+    distutils.file_util.copy_file('.\\directory\\translationpattern_header.txt', '.\\directory\\header.txt')
+    file_dict = {output_translationpattern_filepath : 'translationpattern' + '.csv', '.\\directory\\header.txt' : 'header.txt'}
+    write_tar.write_tar('.\\output\\' + output_filename_prefix + 'import_translate.tar', file_dict)
+    os.remove('.\\directory\\header.txt')
+
 
     # выводим статистику по результатам работы
     print('\n')
