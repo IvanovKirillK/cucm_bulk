@@ -10,7 +10,7 @@ site_description = config.get("vars", 'site_description')
 def worker():
     now = datetime.datetime.now()
     for folder in ['\\output', '\\data']:
-        dest = '.\\backup\\' + site_description.lstrip('\\') + '_' + now.strftime("%Y-%m-%d-%H-%M") + folder + '\\'
+        dest = '.\\backup\\' + site_description.lstrip('\\').replace(' ', '') + '_' + now.strftime("%Y-%m-%d-%H-%M") + folder + '\\'
         distutils.dir_util.copy_tree('.' + folder, dest)
 
     print('\n')

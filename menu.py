@@ -88,7 +88,7 @@ while True:
 
     # завершает работу ПО
     elif selection == '0':
-        print("Goodbuy!")
+        print("Goodbye!")
         break
     else:
         print("Unknown Option Selected!")
@@ -98,5 +98,6 @@ while True:
         #TODO add docker CD pipeline
         #TODO добавить логирование
 
-        #TODO 08 ftmn in long numbers
         #TODO RDP Cyrylic symbols coding
+        #TODO show phone operator menu
+

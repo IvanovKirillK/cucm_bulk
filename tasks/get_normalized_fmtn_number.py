@@ -5,7 +5,7 @@ def get_normalized_number(line):
     newline = newline.replace(")", '')
     newline = newline.replace("-", '')
     if len(newline) < 10:
-        print('Check fmtn number', line)
+        newline = newline
     if len(newline) > 13:
         print('Check fmtn number', line)
     if newline[:2] == '+7':
@@ -13,5 +13,5 @@ def get_normalized_number(line):
     if newline[:1] == '8' and len(newline) == 11:
         newline = '0' + newline
     if newline[:1] == '7' and len(newline) == 11:
-        newline = '08' + newline[1:]
+        newline = '08' + newline.lstrip('7')
     return newline
