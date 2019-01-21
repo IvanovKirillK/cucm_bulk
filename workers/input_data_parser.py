@@ -12,6 +12,7 @@ site_description = config.get("vars", 'site_description')
 output_filename_prefix = config.get("vars", "output_filename_prefix")
 default_site_operator = config.get("vars", "default_site_operator")
 forward_all_destination_prefix = config.get('vars', 'forward_all_destination_prefix')
+use_site_prefix_in_CFA_destination = config.get('vars', 'use_site_prefix_in_CFA_destination')
 
 
 # Проверяет что в поле вномера введены цифры
@@ -117,7 +118,13 @@ def worker():
             alerting_name = initials
             asci_diaplay = ascii_alerting_name = (translit(initials, 'ru', reversed=True))
             directory_number = row[8] + row[1]
-            forward_all_destination = forward_all_destination_prefix + row[8] + str(row[1])
+
+            # формируем CFA номер
+            if use_site_prefix_in_CFA_destination == 'y':
+                forward_all_destination = forward_all_destination_prefix + row[8] + str(row[1])
+            if use_site_prefix_in_CFA_destination == 'n':
+                forward_all_destination = forward_all_destination_prefix + str(row[1])
+
             display = initials
             line_text_label = row[1].rstrip('\n')
 

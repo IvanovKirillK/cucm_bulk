@@ -97,3 +97,6 @@ while True:
         #TODO add travis CI pipeline
         #TODO add docker CD pipeline
         #TODO добавить логирование
+
+        #TODO 08 ftmn in long numbers
+        #TODO RDP Cyrylic symbols coding
