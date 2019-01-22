@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd4d0a2c-7ee4-45a0-8705-762f50f9ce03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/workers/operator_abonents_list.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/get_ad_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/get_ad_user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/show_submenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/show_submenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workers/clear.py" beforeDir="false" afterPath="$PROJECT_DIR$/workers/clear.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workers/input_data_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/workers/input_data_parser.py" afterDir="false" />
     </list>
     <ignored path="data/" />
     <ignored path="directory/" />
@@ -17,140 +20,117 @@
   </component>
   <component name="ChangesViewManager" show_ignored="true" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/menu.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
-                  <folding>
-                    <element signature="e#0#117#0" expanded="true" />
-                    <marker date="1548145423204" expanded="true" signature="1954:2254" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/workers/operator_abonents_list.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/workers/clear.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/workers/backup.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="25" selection-start-column="17" selection-end-column="25" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tasks/show_submenu.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="93">
-                  <caret line="125" column="56" selection-start-line="125" selection-start-column="56" selection-end-line="125" selection-end-column="56" />
-                  <folding>
-                    <element signature="e#0#19#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/workers/tranform_translate.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="170">
-                  <caret line="10" column="22" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="22" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/workers/operator_list.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
-                  <caret line="2" column="114" lean-forward="true" selection-end-line="2" selection-end-column="114" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/config.ini">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="86">
-                  <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/docs/file_format.md">
-              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="374">
-                    <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-                  </first_editor>
-                  <second_editor />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/docs/file_input.md">
-              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="187">
-                    <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-                  </first_editor>
-                  <second_editor />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/workers/operator_list.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="756">
-                  <caret line="86" column="15" lean-forward="true" selection-start-line="85" selection-start-column="4" selection-end-line="86" selection-end-column="15" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/menu.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="123" column="35" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#117#0" expanded="true" />
+                <marker date="1548152807358" expanded="true" signature="1954:2254" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tasks/get_ad_user.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workers/input_data_parser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="171" column="55" lean-forward="true" selection-start-line="171" selection-start-column="55" selection-end-line="171" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workers/operator_abonents_list.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workers/clear.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workers/backup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="25" selection-start-column="17" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tasks/show_submenu.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workers/tranform_translate.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="22" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/workers/operator_list.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="451">
+              <caret line="87" selection-start-line="87" selection-end-line="87" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/config.ini">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -187,7 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tasks/get_ad_user.py" />
         <option value="$PROJECT_DIR$/tasks/get_all_ad_users.py" />
         <option value="$PROJECT_DIR$/tasks/get_normalized_number.py" />
         <option value="$PROJECT_DIR$/tasks/get_partition_by_dn.py" />
@@ -226,15 +205,17 @@
         <option value="$PROJECT_DIR$/docs/file_input.md" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/tasks/get_normalized_fmtn_number.py" />
-        <option value="$PROJECT_DIR$/workers/input_data_parser.py" />
         <option value="$PROJECT_DIR$/workers/backup.py" />
         <option value="$PROJECT_DIR$/workers/tranform_translate.py" />
         <option value="$PROJECT_DIR$/docs/file_format.md" />
-        <option value="$PROJECT_DIR$/tasks/show_submenu.py" />
-        <option value="$PROJECT_DIR$/data/config.ini" />
-        <option value="$PROJECT_DIR$/workers/clear.py" />
         <option value="$PROJECT_DIR$/workers/operator_abonents_list.py" />
+        <option value="$PROJECT_DIR$/workers/operator_list.py" />
+        <option value="$PROJECT_DIR$/workers/clear.py" />
         <option value="$PROJECT_DIR$/menu.py" />
+        <option value="$PROJECT_DIR$/tasks/get_ad_user.py" />
+        <option value="$PROJECT_DIR$/data/config.ini" />
+        <option value="$PROJECT_DIR$/workers/input_data_parser.py" />
+        <option value="$PROJECT_DIR$/tasks/show_submenu.py" />
       </list>
     </option>
   </component>
@@ -261,6 +242,11 @@
               <item name="cucm_bulk" type="b2602c69:ProjectViewProjectNode" />
               <item name="cucm_bulk" type="462c0819:PsiDirectoryNode" />
               <item name="backup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cucm_bulk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cucm_bulk" type="462c0819:PsiDirectoryNode" />
+              <item name="tasks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cucm_bulk" type="b2602c69:ProjectViewProjectNode" />
@@ -402,13 +388,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1546766895513</updated>
-    </task>
-    <task id="LOCAL-00018" summary="get_initials updated">
-      <created>1547126972618</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1547126972618</updated>
     </task>
     <task id="LOCAL-00019" summary="ansi support added">
       <created>1547128240244</created>
@@ -746,7 +725,14 @@
       <option name="project" value="LOCAL" />
       <updated>1548144110902</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="operator and abonents list option added">
+      <created>1548145456574</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1548145456574</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TodoView">
@@ -762,12 +748,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49919224" weight="0.20337197" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.20337197" />
       <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.19283456" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17984831" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26760563" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -781,12 +767,12 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49919224" weight="0.20337197" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.20337197" />
       <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.19283456" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.96424705" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3618635" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -851,7 +837,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update_users update + bug fixing" />
     <MESSAGE value="update_users comments added" />
     <MESSAGE value="check for unassociated users in cucm export" />
     <MESSAGE value="number of TODOs resolved" />
@@ -876,7 +861,8 @@
     <MESSAGE value="bug fixing" />
     <MESSAGE value="check group number option added" />
     <MESSAGE value="clear in\out folder option added" />
-    <option name="LAST_COMMIT_MESSAGE" value="clear in\out folder option added" />
+    <MESSAGE value="operator and abonents list option added" />
+    <option name="LAST_COMMIT_MESSAGE" value="operator and abonents list option added" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/templates/input_data.csv" />
@@ -905,13 +891,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/operator_list.py" />
-    <entry file="file://$PROJECT_DIR$/tasks/get_ad_user.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="39" selection-start-column="30" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tasks/get_normalized_number.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1070,16 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/workers/input_data_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/workers/update_user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1700">
@@ -1140,26 +1109,9 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="187">
-            <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <caret line="11" selection-start-line="11" selection-end-line="11" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/show_submenu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="125" column="56" selection-start-line="125" selection-start-column="56" selection-end-line="125" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1183,40 +1135,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/workers/clear.py">
+    <entry file="file://$PROJECT_DIR$/workers/operator_abonents_list.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/workers/operator_list.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="114" lean-forward="true" selection-end-line="2" selection-end-column="114" />
+        <state relative-caret-position="451">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/workers/operator_abonents_list.py">
+    <entry file="file://$PROJECT_DIR$/tasks/get_ad_user.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workers/clear.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="459">
+          <caret line="123" column="35" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="35" />
           <folding>
             <element signature="e#0#117#0" expanded="true" />
-            <marker date="1548145423204" expanded="true" signature="1954:2254" ph="..." />
+            <marker date="1548152807358" expanded="true" signature="1954:2254" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workers/input_data_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="171" column="55" lean-forward="true" selection-start-line="171" selection-start-column="55" selection-end-line="171" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tasks/show_submenu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -39,6 +39,7 @@ def show_input_parser_submenu():
     print('Config options: default_site_operator - ', default_site_operator)
     print('Config options: forward_all_destination_prefix - ', forward_all_destination_prefix)
     print('Config options: use_site_prefix_in_CFA_destination - ', use_site_prefix_in_CFA_destination)
+    print('Config options: css for forward all - ', css)
     print('Output: following files will be generated - ', output_filename_prefix + ' phones_*model*.csv')
     print('Output: following files will be generated - ', output_filename_prefix + ' unassociated_dn.csv')
     selection = input("Continue? [y/n]:")

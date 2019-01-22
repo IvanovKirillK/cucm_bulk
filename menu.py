@@ -119,6 +119,8 @@ while True:
 
         #TODO RDP Cyrylic symbols coding
         #TODO check input files for formating
+        #TODO show abonents by operators function
+
 
 
 

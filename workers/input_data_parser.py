@@ -13,6 +13,7 @@ output_filename_prefix = config.get("vars", "output_filename_prefix")
 default_site_operator = config.get("vars", "default_site_operator")
 forward_all_destination_prefix = config.get('vars', 'forward_all_destination_prefix')
 use_site_prefix_in_CFA_destination = config.get('vars', 'use_site_prefix_in_CFA_destination')
+rdp_css = config.get('vars', 'rdp_css')
 
 
 # Проверяет что в поле вномера введены цифры
@@ -66,7 +67,8 @@ def worker():
     # формирует заголовок выходного файла
     header = ['MAC ADDRESS', 'DESCRIPTION', 'DEVICE POOL', 'OWNER USER ID', 'LINE DESCRIPTION  1',
                       'ALERTING NAME  1', 'ASCII ALERTING NAME  1', 'DIRECTORY NUMBER  1', 'FORWARD ALL DESTINATION  1',
-                      'DISPLAY  1', 'ASCII DISPLAY  1', 'LINE TEXT LABEL  1']
+                      'DISPLAY  1', 'ASCII DISPLAY  1', 'LINE TEXT LABEL  1', 'FORWARD ALL CSS 1',
+              'SECONDARY CSS FOR FORWARD ALL 1']
 
     # создает выходные файлы для моделей телефонов, пишет заголовокв выходные файлы
     for model in model_list:
@@ -134,7 +136,7 @@ def worker():
             # собирает данные для записи в лист
             data_list = [mac_address, description, device_pool, owner_user_id, line_description, alerting_name,
                          ascii_alerting_name, directory_number, forward_all_destination, display, asci_diaplay,
-                         line_text_label]
+                         line_text_label, rdp_css, rdp_css]
 
             # проверяет содерждит ли какое-либо из полей None
             if check_data_list_contains_none.check_data_list_contains_none(data_list):
