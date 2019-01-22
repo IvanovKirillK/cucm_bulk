@@ -12,7 +12,8 @@ config.read(".\\data\\config.ini", encoding='utf-8')
 site_description = config.get("vars", 'site_description')
 output_filename_prefix = config.get('vars', 'output_filename_prefix')
 analog_line_access_pt = config.get('vars', 'analog_line_access_pt')
-
+check_inbound_group_number = config.get('vars', 'check_inbound_group_number')
+check_outbound_group_number = config.get('vars', 'check_outbound_group_number')
 
 # worker - в нем делется вся работа
 def worker():
@@ -100,8 +101,8 @@ def worker():
             prefix_digit_outgoing_call = '000' + row[8] + row[9]
 
         else:
-            # проверяем исходящий номер на наличие в списке групповых
-            if out_number in group_list_out:
+            # проверяем исходящий номер на наличие в списке групповых и флаг проверки установлен в y
+            if (out_number in group_list_out and check_outbound_group_number == 'y'):
                 count_group_transform += 1
                 continue
             else:
@@ -180,7 +181,7 @@ def worker():
             continue
 
         # проверяем входящий номер на наличие в списке групповых
-        elif in_number in group_list_in:
+        elif (in_number in group_list_in and check_inbound_group_number == 'y'):
             count_group_translate += 1
             continue
         else:

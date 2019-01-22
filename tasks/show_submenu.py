@@ -11,6 +11,9 @@ css = config.get("vars", "rdp_css")
 forward_all_destination_prefix = config.get('vars', 'forward_all_destination_prefix')
 pickup_group_start_number = config.get('vars', 'pickup_group_start_number')
 use_site_prefix_in_CFA_destination = config.get('vars', 'use_site_prefix_in_CFA_destination')
+analog_line_access_pt = config.get('vars', 'analog_line_access_pt')
+check_inbound_group_number = config.get('vars', 'check_inbound_group_number')
+check_outbound_group_number = config.get('vars', 'check_outbound_group_number')
 
 
 def show_input_parser_submenu():
@@ -122,6 +125,9 @@ def show_translate_submenu():
     else:
         print('!!!!! File - ' + filename + ' Not Found')
     print('Config options: site_description - ', site_description)
+    print('Config options: analog_line_access_pt - ', analog_line_access_pt)
+    print('Config options: check_inbound_group_number - ', check_inbound_group_number)
+    print('Config options: check_outbound_group_number - ', check_outbound_group_number)
     print('Output: following files will be generated - ', '.\\output\\' + 'callingpartytransparent' + '.csv')
     print('Output: following files will be generated - ', '.\\output\\' + 'translationpattern' + '.csv')
     print('Output: following files will be generated - ', '.\\output\\' + output_filename_prefix + 'import_transform' + '.tar')
