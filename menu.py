@@ -1,4 +1,4 @@
-from workers import input_data_parser, operator_list, pickup, rd_rdp, tranform_translate, update_user, backup
+from workers import input_data_parser, operator_list, pickup, rd_rdp, tranform_translate, update_user, backup, clear
 from tasks import show_submenu
 
 # определяем сисок пунктов меню
@@ -10,6 +10,7 @@ menu['4'] = "Construct translation and transformation files"
 menu['5'] = "Construct pickup group files"
 menu['8'] = "Show list of operators on the site"
 menu['9'] = "Backup input and output files"
+menu['10'] = "Clear input and output directories"
 menu['0'] = "Exit"
 
 # в цикле выводим пункты меню
@@ -86,6 +87,14 @@ while True:
         except Exception as e:
             print(e)
 
+    elif selection == '10':
+        print("Clear...")
+        try:
+            # вызываем модуль для обработки данных
+            clear.worker()
+        except Exception as e:
+            print(e)
+
     # завершает работу ПО
     elif selection == '0':
         print("Goodbye!")
@@ -100,7 +109,7 @@ while True:
 
         #TODO RDP Cyrylic symbols coding
         #TODO show phone operator menu
-        #TODO clear input\output menu
+
 
 
 
