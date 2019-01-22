@@ -100,4 +100,8 @@ while True:
 
         #TODO RDP Cyrylic symbols coding
         #TODO show phone operator menu
+        #TODO clear input\output menu
+        #TODO not check group number config option
+
+
 

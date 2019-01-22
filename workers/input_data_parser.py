@@ -26,7 +26,7 @@ def check_internal_number(number):
         print('Check data in input data ' + e)
 
 
-# Проверяет что префикс сайта не более 4 и не менее 3 символов
+# Проверяет что префикс сайта не более 4 и не менее 2 символов
 def check_code(code):
     try:
         if code.isdigit and (2 <= len(code) <= 4):
