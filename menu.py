@@ -1,4 +1,5 @@
-from workers import input_data_parser, operator_list, pickup, rd_rdp, tranform_translate, update_user, backup, clear
+from workers import input_data_parser, operator_list, pickup, rd_rdp, tranform_translate, update_user, backup, clear, \
+    operator_abonents_list
 from tasks import show_submenu
 
 # определяем сисок пунктов меню
@@ -8,6 +9,7 @@ menu['2'] = "Construct user_update and line_appearance files."
 menu['3'] = "Construct RD and RDP files"
 menu['4'] = "Construct translation and transformation files"
 menu['5'] = "Construct pickup group files"
+menu['7'] = "Show list of phone_numbers and operator names from input data"
 menu['8'] = "Show list of operators on the site"
 menu['9'] = "Backup input and output files"
 menu['10'] = "Clear input and output directories"
@@ -71,6 +73,14 @@ while True:
             except Exception as e:
                 print(e)
 
+    elif selection == '7':
+        print("Building list of phones and operators...")
+        try:
+            # вызываем модуль для обработки данных
+            operator_abonents_list.worker()
+        except Exception as e:
+            print(e)
+
     elif selection == '8':
         print("Building list of operators, be patient...")
         try:
@@ -108,7 +118,7 @@ while True:
         #TODO добавить логирование
 
         #TODO RDP Cyrylic symbols coding
-        #TODO show phone operator menu
+        #TODO check input files for formating
 
 
 
