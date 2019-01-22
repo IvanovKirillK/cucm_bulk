@@ -8,6 +8,6 @@ def write_header(path, list):
 
 
 def write_header_ansi(path, list):
-    file = open(path, 'w', encoding='ansi', newline='')
+    file = open(path, 'w', encoding='mbcs', newline='')
     writecsv = csv.writer(file, delimiter=',')
     writecsv.writerow(list)

@@ -2,6 +2,7 @@ import csv
 import configparser
 import distutils.file_util
 import os
+from transliterate import translit
 from tasks import get_initials, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, check_file_exists, get_list_of_group_numbers, \
     get_pt_dp_by_operator_name, check_empty_line, get_calling_party_transformation_mask, write_tar
@@ -59,7 +60,7 @@ def worker():
                                 "USE ORIGINATOR'S CALLING SEARCH SPACE"]
 
     # определяем путь к выходным файлам
-    output_callingpartytransparent_filepath = '.\\output\\' + 'callingpartytransparent' + '.csv'
+    output_callingpartytransparent_filepath = '.\\output\\' + 'callingpartytranspattern' + '.csv'
     output_translationpattern_filepath = '.\\output\\' + 'translationpattern' + '.csv'
 
     # создаем выходные файлы. пишем заголовки
@@ -123,7 +124,7 @@ def worker():
         initials = get_initials.get_initials_from_string(row[0])
 
         # формируем description
-        description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
+        description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + translit(site_description, 'ru')
 
         # определяем маску по оператору (а оператора по номеру)
         calling_party_transformation_mask = \
@@ -155,8 +156,8 @@ def worker():
     # закрываем файл
     file.close()
 
-    distutils.file_util.copy_file('.\\directory\\callingpartytranspattern_header.txt', '.\\directory\\header.txt')
-    file_dict = {output_callingpartytransparent_filepath: 'callingpartytransparent' + '.csv',
+    distutils.file_util.copy_file('.\\directory\\export_transform\\header.txt', '.\\directory\\header.txt')
+    file_dict = {output_callingpartytransparent_filepath: 'callingpartytranspattern' + '.csv',
                  '.\\directory\\header.txt': 'header.txt'}
     write_tar.write_tar('.\\output\\' + output_filename_prefix + 'import_transform.tar', file_dict)
     os.remove('.\\directory\\header.txt')
@@ -191,7 +192,7 @@ def worker():
             route_partition = 'Pt_SYS_PSTN_Incoming'
             initials = get_initials.get_initials_from_string(row[0])
             description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' \
-                          + site_description
+                          + translit(site_description, 'ru')
 
             # определяем констнты
             numbering_plan = route_filter = calling_party_transformation_mask = discard_digits = \
@@ -228,7 +229,7 @@ def worker():
             count_translate += 1
     file.close()
 
-    distutils.file_util.copy_file('.\\directory\\translationpattern_header.txt', '.\\directory\\header.txt')
+    distutils.file_util.copy_file('.\\directory\\export_translate\\header.txt', '.\\directory\\header.txt')
     file_dict = {output_translationpattern_filepath: 'translationpattern' + '.csv',
                  '.\\directory\\header.txt': 'header.txt'}
     write_tar.write_tar('.\\output\\' + output_filename_prefix + 'import_translate.tar', file_dict)

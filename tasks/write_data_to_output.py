@@ -8,6 +8,6 @@ def write_data_to_output(path, list):
 
 
 def write_data_to_output_ansi(path, list):
-    file = open(path, 'a', encoding='ansi', newline='')
+    file = open(path, 'a', encoding='mbcs', newline='')
     writecsv = csv.writer(file, delimiter=',')
     writecsv.writerow(list)
