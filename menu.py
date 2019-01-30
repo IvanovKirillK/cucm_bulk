@@ -121,5 +121,14 @@ while True:
         #TODO check input files for formating
         #TODO show abonents by operators function
 
+        #TODO block outbound calling CSS
+        #TODO multiple witespaces in name
+        #TODO site description cirylyc -> translit
+        #TODO calling description length 50 chars
+        #TODO no submenu if Export phones files missed
+
+
+
+
 
 
