@@ -124,7 +124,6 @@ while True:
         #TODO block outbound calling CSS
         #TODO multiple witespaces in name
         #TODO calling description length 50 chars
-        #TODO no submenu if Export phones files missed
 
 
 

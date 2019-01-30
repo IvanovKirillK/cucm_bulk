@@ -1,7 +1,6 @@
 import configparser
 import glob
 from tasks import check_file_exists, get_site_desc
-from transliterate import translit
 
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
@@ -31,6 +30,9 @@ def show_input_parser_submenu():
         print('Input: Will be working with following input file - ', filename)
     else:
         print('!!!!! File - ' + filename + ' Not Found')
+    if len(glob.glob('.\\directory\\Kod*')) == 0:
+        print('!!!! No Kod files found')
+        return False
     for file in glob.glob('.\\directory\\Kod*'):
         if check_file_exists.check_file_exists(file):
             print('Input: Will be working with following input file - ', file)
@@ -58,12 +60,18 @@ def show_input_parser_submenu():
 def show_update_user_submenu():
     print('\n')
     print(30 * '#')
-    for file in (glob.glob('.\\data\\*Export_phones*')):
-        if check_file_exists.check_file_exists(file):
-            print('Input: Will be working with following input files - ', file)
-        else:
-            print('!!!!! File - ' + file + ' Not Found')
+    if len(glob.glob('.\\data\\*Export_phones*')) == 0:
+        print('!!!! File Export phone Not Found!')
+    elif len(glob.glob('.\\data\\*Export_phones*')) > 0:
+        for file in (glob.glob('.\\data\\*Export_phones*')):
+            if check_file_exists.check_file_exists(file):
+                print('Input: Will be working with following input files - ', file)
+            else:
+                print('!!!!! File - ' + file + ' Not Found')
 
+        if len(glob.glob('.\\output\\*_phone*')) == 0:
+            print('!!! No Phone files found')
+            return False
         for file in (glob.glob('.\\output\\*_phone*')):
             if check_file_exists.check_file_exists(file):
                 print('Input: Will be working with following input files - ', file)
@@ -93,11 +101,15 @@ def show_RD_RDP_submenu():
     else:
         print('!!!!! File - ' + filename + ' Not Found')
 
-    for file in (glob.glob('.\\data\\*Export_phones*')):
-        if check_file_exists.check_file_exists(file):
-            print('Input: Will be working with following input files - ', file)
-        else:
-            print('!!!!! File - ' + filename + ' Not Found')
+    if len(glob.glob('.\\data\\*Export_phones*')) == 0:
+        print('!!!! File Export phone Not Found!')
+        return False
+    elif len(glob.glob('.\\data\\*Export_phones*')) > 0:
+        for file in (glob.glob('.\\data\\*Export_phones*')):
+            if check_file_exists.check_file_exists(file):
+                print('Input: Will be working with following input files - ', file)
+            else:
+                print('!!!!! File - ' + filename + ' Not Found')
 
     filename = ".\\directory\\ad_users.txt"
     if check_file_exists.check_file_exists(filename):
