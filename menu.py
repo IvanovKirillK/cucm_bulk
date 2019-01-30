@@ -122,4 +122,3 @@ while True:
         #TODO show abonents by operators function
 
         #TODO block outbound calling CSS
-        #TODO multiple witespaces in name

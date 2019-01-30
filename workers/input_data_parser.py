@@ -1,5 +1,6 @@
 import csv
 import configparser
+import re
 from transliterate import translit
 from tasks import check_full_name, get_initials, get_all_ad_users, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, get_ad_user, check_file_exists, get_pt_dp_by_operator_name, \
@@ -94,7 +95,8 @@ def worker():
             count_input += 1
 
             # делит имя по пробелам на ФИО
-            namelist = check_full_name.check_full_name(row[0].rstrip(' ').lstrip(' '))
+            name = re.sub(' +', ' ', row[0].rstrip(' ').lstrip(' '))
+            namelist = check_full_name.check_full_name(name)
 
             # проверяет данные в поле internal_number
             check_internal_number(row[1])
