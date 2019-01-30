@@ -1,6 +1,7 @@
 import configparser
 import glob
-from tasks import check_file_exists
+from tasks import check_file_exists, get_site_desc
+from transliterate import translit
 
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
@@ -35,7 +36,8 @@ def show_input_parser_submenu():
             print('Input: Will be working with following input file - ', file)
         else:
             print('!!!!! File - ' + filename + ' Not Found')
-    print('Config options: site_description - ', site_description)
+    print('Config options: site_description - ', site_description, 'will be used:',
+          get_site_desc.get_site_desc(site_description))
     print('Config options: output_filename_prefix - ', output_filename_prefix)
     print('Config options: default_site_operator - ', default_site_operator)
     print('Config options: forward_all_destination_prefix - ', forward_all_destination_prefix)

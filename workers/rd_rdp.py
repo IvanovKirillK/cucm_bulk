@@ -82,7 +82,7 @@ def worker():
                 if row[2] != '':
                     rdp_profile_name = 'RDP_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_dect'
                     rd_name = 'RD_' + translit(initials.replace(" ", ""), 'ru', reversed=True) + '_dect'
-                    description = initials + u' /дект ' + translit(site_description, 'ru')
+                    description = initials + u' /дект ' + site_description
                     destination = row[2]
                     count_input += 1
 
@@ -91,7 +91,7 @@ def worker():
                     rdp_profile_name = 'RDP_' + translit(initials.replace(" ", "").replace('.', ''), 'ru', reversed=True) + '_fmtn'
                     rd_name = 'RD_' + translit(initials.replace(" ", "").replace('.', ''), 'ru', reversed=True) + '_fmtn'
                     destination = get_normalized_fmtn_number.get_normalized_number(row[3])
-                    description = initials + u' /фмтн ' + translit(site_description, 'ru')
+                    description = initials + u' /фмтн ' + site_description
                     count_input += 1
 
                 # формируем данные для данных о мобильных-телефонах если это моб
@@ -101,7 +101,7 @@ def worker():
                     rd_name = 'RD_' + translit(initials.replace(" ", "").replace('.', ''), 'ru',
                                                reversed=True) + '_mob'
                     destination = get_normalized_fmtn_number.get_normalized_number(row[3])
-                    description = initials + u' /моб ' + translit(site_description, 'ru')
+                    description = initials + u' /моб ' + site_description
                     count_input += 1
 
                 # убираем апострофы из имен RDP

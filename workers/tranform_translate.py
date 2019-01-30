@@ -2,7 +2,6 @@ import csv
 import configparser
 import distutils.file_util
 import os
-from transliterate import translit
 from tasks import get_initials, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, check_file_exists, get_list_of_group_numbers, \
     get_pt_dp_by_operator_name, check_empty_line, get_calling_party_transformation_mask, write_tar
@@ -124,7 +123,7 @@ def worker():
         initials = get_initials.get_initials_from_string(row[0])
 
         # формируем description
-        description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + translit(site_description, 'ru')
+        description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
 
         # определяем маску по оператору (а оператора по номеру)
         calling_party_transformation_mask = \
@@ -192,7 +191,7 @@ def worker():
             route_partition = 'Pt_SYS_PSTN_Incoming'
             initials = get_initials.get_initials_from_string(row[0])
             description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' \
-                          + translit(site_description, 'ru')
+                          + site_description
 
             # определяем констнты
             numbering_plan = route_filter = calling_party_transformation_mask = discard_digits = \

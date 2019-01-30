@@ -4,7 +4,7 @@ import configparser
 
 config = configparser.ConfigParser()
 config.read(".\\data\\config.ini", encoding='utf-8')
-site_description = config.get("vars", 'site_description')
+#site_description = config.get("vars", 'site_description')
 output_filename_prefix = config.get("vars", 'output_filename_prefix')
 
 

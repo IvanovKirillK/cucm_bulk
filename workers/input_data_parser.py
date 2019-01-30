@@ -3,7 +3,7 @@ import configparser
 from transliterate import translit
 from tasks import check_full_name, get_initials, get_all_ad_users, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, get_ad_user, check_file_exists, get_pt_dp_by_operator_name, \
-    check_data_list_contains_none, get_phone_model_list, check_empty_line
+    check_data_list_contains_none, get_phone_model_list, check_empty_line, get_site_desc
 
 # Определяет путь к конфиг файлу, загружает конфигурацию
 config = configparser.ConfigParser()
@@ -108,7 +108,8 @@ def worker():
 
             # определяет строку для записи в файл
             mac_address = ''
-            description = initials + ' ' + site_description
+            #description = initials + ' ' + site_description
+            description = initials + ' ' + get_site_desc.get_site_desc(site_description)
             out_number = (get_normalized_number.get_normalized_number(row[6]))
             operator_name = get_operator_name.get_operator_name(out_number, list_codes)
             device_pool = get_pt_dp_by_operator_name.get_device_pool_by_operator_name(operator_name)
