@@ -124,6 +124,8 @@ def worker():
 
         # формируем description
         description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
+        if len(description) >= 50:
+            description = operator_name + ' /' + initials + ' ' + site_description
 
         # определяем маску по оператору (а оператора по номеру)
         calling_party_transformation_mask = \
@@ -192,6 +194,8 @@ def worker():
             initials = get_initials.get_initials_from_string(row[0])
             description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' \
                           + site_description
+            if len(description) >= 50:
+                description = + str(row[8]) + str(row[1]) + ' /' + initials + ' ' + site_description
 
             # определяем констнты
             numbering_plan = route_filter = calling_party_transformation_mask = discard_digits = \
