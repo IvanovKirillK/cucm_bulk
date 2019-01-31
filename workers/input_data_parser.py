@@ -16,6 +16,7 @@ forward_all_destination_prefix = config.get('vars', 'forward_all_destination_pre
 use_site_prefix_in_CFA_destination = config.get('vars', 'use_site_prefix_in_CFA_destination')
 rdp_css = config.get('vars', 'rdp_css')
 show_line_text_label = config.get('vars', 'show_line_text_label')
+analog_line_access_dp = config.get('vars', 'analog_line_access_dp')
 
 
 # Проверяет что в поле вномера введены цифры
@@ -114,7 +115,13 @@ def worker():
             description = initials + ' ' + get_site_desc.get_site_desc(site_description)
             out_number = (get_normalized_number.get_normalized_number(row[6]))
             operator_name = get_operator_name.get_operator_name(out_number, list_codes)
-            device_pool = get_pt_dp_by_operator_name.get_device_pool_by_operator_name(operator_name)
+
+            #определяет device pool
+            if row[9].isdigit():
+                device_pool = analog_line_access_dp
+            else:
+                device_pool = get_pt_dp_by_operator_name.get_device_pool_by_operator_name(operator_name)
+
             short_number = row[7] + row[1]
 
             # определяет имя пользователя ad (из справочника всех пользователей)

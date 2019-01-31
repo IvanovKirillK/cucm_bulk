@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cd4d0a2c-7ee4-45a0-8705-762f50f9ce03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tasks/show_submenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/tasks/show_submenu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/workers/input_data_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/workers/input_data_parser.py" afterDir="false" />
     </list>
     <ignored path="data/" />
@@ -17,14 +19,14 @@
   <component name="ChangesViewManager" show_ignored="true" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="124" column="10" selection-start-line="124" selection-start-column="10" selection-end-line="124" selection-end-column="41" />
+            <state relative-caret-position="38">
+              <caret line="124" column="29" selection-start-line="124" selection-start-column="29" selection-end-line="124" selection-end-column="29" />
               <folding>
                 <element signature="e#0#146#0" expanded="true" />
-                <marker date="1548878781344" expanded="true" signature="1954:2254" ph="..." />
+                <marker date="1548921659413" expanded="true" signature="1954:2254" ph="..." />
               </folding>
             </state>
           </provider>
@@ -33,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tasks/show_submenu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="90" column="13" lean-forward="true" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
+            <state relative-caret-position="833">
+              <caret line="49" column="76" selection-start-line="49" selection-start-column="76" selection-end-line="49" selection-end-column="76" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -42,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/workers/input_data_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="101" column="41" lean-forward="true" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+            <state relative-caret-position="306">
+              <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="67" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -57,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/config.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+            <state relative-caret-position="153">
+              <caret line="18" column="21" selection-start-line="18" selection-end-line="18" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -87,7 +89,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/workers/tranform_translate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
+            <state relative-caret-position="3264">
               <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -218,18 +220,18 @@
         <option value="$PROJECT_DIR$/tasks/write_data_to_output.py" />
         <option value="$PROJECT_DIR$/workers/backup.py" />
         <option value="$PROJECT_DIR$/tasks/get_last_site_desc.py" />
-        <option value="$PROJECT_DIR$/data/config.ini" />
         <option value="$PROJECT_DIR$/workers/rd_rdp.py" />
-        <option value="$PROJECT_DIR$/tasks/show_submenu.py" />
         <option value="$PROJECT_DIR$/workers/tranform_translate.py" />
         <option value="$PROJECT_DIR$/menu.py" />
+        <option value="$PROJECT_DIR$/data/config.ini" />
         <option value="$PROJECT_DIR$/workers/input_data_parser.py" />
+        <option value="$PROJECT_DIR$/tasks/show_submenu.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1389" />
-    <option name="y" value="-15" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -238,6 +240,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -248,13 +251,12 @@
             <path>
               <item name="cucm_bulk" type="b2602c69:ProjectViewProjectNode" />
               <item name="cucm_bulk" type="462c0819:PsiDirectoryNode" />
-              <item name="workers" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -386,13 +388,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1546766895513</updated>
-    </task>
-    <task id="LOCAL-00025" summary="operator name config option added">
-      <created>1547211119808</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1547211119808</updated>
     </task>
     <task id="LOCAL-00026" summary="operator list added">
       <created>1547216910183</created>
@@ -730,7 +725,14 @@
       <option name="project" value="LOCAL" />
       <updated>1548878801464</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="multiple white spaces">
+      <created>1548879344487</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1548879344487</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TodoView">
@@ -743,15 +745,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.20337197" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49919224" weight="0.20337197" />
       <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.19283456" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.8483207" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -765,12 +766,12 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.20337197" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49919224" visible="true" weight="0.20337197" />
       <window_info id="Structure" order="1" sideWeight="0.50080776" side_tool="true" weight="0.19283456" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.4409534" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947312" visible="true" weight="0.36511377" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -835,7 +836,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="TODO fixed" />
     <MESSAGE value="pickup composition added" />
     <MESSAGE value="config options cleanup" />
     <MESSAGE value="Readme update" />
@@ -860,7 +860,8 @@
     <MESSAGE value="cylilyc site_description added" />
     <MESSAGE value="submenu file exist check" />
     <MESSAGE value="description length" />
-    <option name="LAST_COMMIT_MESSAGE" value="description length" />
+    <MESSAGE value="multiple white spaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="multiple white spaces" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/tasks/get_number_of_input_rd.py" />
@@ -1035,17 +1036,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/file_format.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="82" selection-start-line="42" selection-start-column="82" selection-end-line="42" selection-end-column="82" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="374">
             <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="82" selection-start-line="42" selection-start-column="82" selection-end-line="42" selection-end-column="82" />
         </state>
       </provider>
     </entry>
@@ -1116,13 +1117,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tasks/get_site_desc.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1136,6 +1130,16 @@
           <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workers/tranform_translate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3264">
+          <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1170,43 +1174,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="18" column="21" selection-start-line="18" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/workers/input_data_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tasks/show_submenu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="90" column="13" lean-forward="true" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
+        <state relative-caret-position="833">
+          <caret line="49" column="76" selection-start-line="49" selection-start-column="76" selection-end-line="49" selection-end-column="76" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/workers/tranform_translate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="124" column="10" selection-start-line="124" selection-start-column="10" selection-end-line="124" selection-end-column="41" />
+        <state relative-caret-position="38">
+          <caret line="124" column="29" selection-start-line="124" selection-start-column="29" selection-end-line="124" selection-end-column="29" />
           <folding>
             <element signature="e#0#146#0" expanded="true" />
-            <marker date="1548878781344" expanded="true" signature="1954:2254" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/workers/input_data_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="101" column="41" lean-forward="true" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1548921659413" expanded="true" signature="1954:2254" ph="..." />
           </folding>
         </state>
       </provider>

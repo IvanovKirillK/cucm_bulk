@@ -15,6 +15,7 @@ analog_line_access_pt = config.get('vars', 'analog_line_access_pt')
 check_inbound_group_number = config.get('vars', 'check_inbound_group_number')
 check_outbound_group_number = config.get('vars', 'check_outbound_group_number')
 show_line_text_label = config.get('vars', 'show_line_text_label')
+analog_line_access_dp = config.get('vars', 'analog_line_access_dp')
 
 
 def show_input_parser_submenu():
@@ -46,6 +47,7 @@ def show_input_parser_submenu():
     print('Config options: use_site_prefix_in_CFA_destination - ', use_site_prefix_in_CFA_destination)
     print('Config options: css for forward all - ', css)
     print('Config options: show line text label - ', show_line_text_label)
+    print('Config options: analog_line_access_dp - ', analog_line_access_dp)
     print('Output: following files will be generated - ', output_filename_prefix + ' phones_*model*.csv')
     print('Output: following files will be generated - ', output_filename_prefix + ' unassociated_dn.csv')
     selection = input("Continue? [y/n]:")
