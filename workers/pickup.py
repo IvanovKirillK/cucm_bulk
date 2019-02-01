@@ -119,6 +119,7 @@ def worker():
     # записывает неиспользуемую строку в конец выходного файла, какие-то баги AXL или Postman
     dummy_row = ['dummy', 'dummy', 'dummy']
     write_data_to_output.write_data_to_output(group_output_filepath, dummy_row)
+    dummy_row = ['dummy', 'dummy']
     write_data_to_output.write_data_to_output(pickup_output_filepath, dummy_row)
 
 

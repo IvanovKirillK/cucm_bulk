@@ -22,23 +22,35 @@ analog_line_access_dp = config.get('vars', 'analog_line_access_dp')
 # Проверяет что в поле вномера введены цифры
 def check_internal_number(number):
     try:
-        if number.isdigit:
+        if number.isdigit():
             return True
         else:
             print('Check following internal number:', number)
     except Exception as e:
-        print('Check data in input data ' + e)
+        print('Check data in input_data file ' + e)
 
 
 # Проверяет что префикс сайта не более 4 и не менее 2 символов
 def check_code(code):
     try:
-        if code.isdigit and (2 <= len(code) <= 4):
+        if code.isdigit() and (2 <= len(code) <= 4):
             return True
         else:
             print('Check following site_prefix:', code)
     except Exception as e:
-        print('Check data in input data ' + e)
+        print('Check data in input_data file ' + e)
+
+
+def check_model(model):
+    try:
+        if model.isdigit() and len(model) == 4:
+            return True
+        else:
+            #print('!!!! Phone model is not present somwehere in input_data file !!!!')
+            raise Exception('!!!! Phone model is not present somewhere in input_data file !!!!')
+    except Exception as e:
+        print('Check data in input_data file ' + str(e))
+
 
 
 # Основная фунекция модуля, тут происходит вызов тасков и основная работа
@@ -105,6 +117,9 @@ def worker():
             # проеряет старый и новый коды для филиала
             check_code(row[7])
             check_code(row[8])
+
+            # проверяет модель телефона
+            check_model(row[4])
 
             # получает инициалы из ФИО
             initials = get_initials.get_initials(namelist)

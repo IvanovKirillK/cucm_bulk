@@ -104,8 +104,9 @@ def worker():
                     description = initials + u' /моб ' + site_description
                     count_input += 1
 
-                # убираем апострофы из имен RDP
+                # убираем апострофы из имен RDP и RD
                 rdp_profile_name = rdp_profile_name.replace("'", '')
+                rd_name = rd_name.replace("'", '')
 
 
 
