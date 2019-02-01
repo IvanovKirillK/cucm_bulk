@@ -4,7 +4,7 @@ import re
 from transliterate import translit
 from tasks import check_full_name, get_initials, get_all_ad_users, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, get_ad_user, check_file_exists, get_pt_dp_by_operator_name, \
-    check_data_list_contains_none, get_phone_model_list, check_empty_line, get_site_desc
+    check_data_list_contains_none, get_phone_model_list, check_empty_line, get_site_desc, check_input_data
 
 # Определяет путь к конфиг файлу, загружает конфигурацию
 config = configparser.ConfigParser()
@@ -17,40 +17,6 @@ use_site_prefix_in_CFA_destination = config.get('vars', 'use_site_prefix_in_CFA_
 rdp_css = config.get('vars', 'rdp_css')
 show_line_text_label = config.get('vars', 'show_line_text_label')
 analog_line_access_dp = config.get('vars', 'analog_line_access_dp')
-
-
-# Проверяет что в поле вномера введены цифры
-def check_internal_number(number):
-    try:
-        if number.isdigit():
-            return True
-        else:
-            print('Check following internal number:', number)
-    except Exception as e:
-        print('Check data in input_data file ' + e)
-
-
-# Проверяет что префикс сайта не более 4 и не менее 2 символов
-def check_code(code):
-    try:
-        if code.isdigit() and (2 <= len(code) <= 4):
-            return True
-        else:
-            print('Check following site_prefix:', code)
-    except Exception as e:
-        print('Check data in input_data file ' + e)
-
-
-def check_model(model):
-    try:
-        if model.isdigit() and len(model) == 4:
-            return True
-        else:
-            #print('!!!! Phone model is not present somwehere in input_data file !!!!')
-            raise Exception('!!!! Phone model is not present somewhere in input_data file !!!!')
-    except Exception as e:
-        print('Check data in input_data file ' + str(e))
-
 
 
 # Основная фунекция модуля, тут происходит вызов тасков и основная работа
@@ -111,89 +77,85 @@ def worker():
             name = re.sub(' +', ' ', row[0].rstrip(' ').lstrip(' '))
             namelist = check_full_name.check_full_name(name)
 
-            # проверяет данные в поле internal_number
-            check_internal_number(row[1])
+            # проверяет input_data
+            if (check_input_data.check_internal_number(row[1]) and check_input_data.check_code(row[7])  \
+                    and check_input_data.check_code(row[8]) and check_input_data.check_model(row[4])):
 
-            # проеряет старый и новый коды для филиала
-            check_code(row[7])
-            check_code(row[8])
+                # получает инициалы из ФИО
+                initials = get_initials.get_initials(namelist)
 
-            # проверяет модель телефона
-            check_model(row[4])
+                # определяет строку для записи в файл
+                mac_address = ''
+                description = initials + ' ' + get_site_desc.get_site_desc(site_description)
+                out_number = (get_normalized_number.get_normalized_number(row[6]))
+                operator_name = get_operator_name.get_operator_name(out_number, list_codes)
 
-            # получает инициалы из ФИО
-            initials = get_initials.get_initials(namelist)
-
-            # определяет строку для записи в файл
-            mac_address = ''
-            #description = initials + ' ' + site_description
-            description = initials + ' ' + get_site_desc.get_site_desc(site_description)
-            out_number = (get_normalized_number.get_normalized_number(row[6]))
-            operator_name = get_operator_name.get_operator_name(out_number, list_codes)
-
-            #определяет device pool
-            if row[9].isdigit():
-                device_pool = analog_line_access_dp
-            else:
-                device_pool = get_pt_dp_by_operator_name.get_device_pool_by_operator_name(operator_name)
-
-            short_number = row[7] + row[1]
-
-            # определяет имя пользователя ad (из справочника всех пользователей)
-            owner_user_id = (get_ad_user.get_ad_user(short_number, user_list))
-
-            line_description = initials
-            alerting_name = initials
-            asci_diaplay = ascii_alerting_name = (translit(initials, 'ru', reversed=True))
-            directory_number = row[8] + row[1]
-
-            # формируем CFA номер
-            if use_site_prefix_in_CFA_destination == 'y':
-                forward_all_destination = forward_all_destination_prefix + row[8] + str(row[1])
-            if use_site_prefix_in_CFA_destination == 'n':
-                forward_all_destination = forward_all_destination_prefix + str(row[1])
-
-            display = initials
-
-            # проверяем надо ли показывать line text label на телефоне, формируем line_text_label
-            if show_line_text_label == 'y':
-                line_text_label = row[1].rstrip('\n')
-            else:
-                line_text_label = ''
-
-            # определяет выходной файл исходя из модели телфона во входных данных
-            output_filepath = '.\\output\\' + output_filename_prefix + 'phones_' + row[4] + '.csv'
-
-            # собирает данные для записи в лист
-            data_list = [mac_address, description, device_pool, owner_user_id, line_description, alerting_name,
-                         ascii_alerting_name, directory_number, forward_all_destination, display, asci_diaplay,
-                         line_text_label, rdp_css, rdp_css, rdp_css]
-
-            # проверяет содерждит ли какое-либо из полей None
-            if check_data_list_contains_none.check_data_list_contains_none(data_list):
-                element = check_data_list_contains_none.get_none_item(header, data_list)
-                # если пользователь ad неопределен записывает лист в выходной файл
-                if element == 'OWNER USER ID':
-                    element = 'OWNER USER ID'
-                # если неопределен любой другой стобец - записывает в лог
+                #определяет device pool
+                if row[9].isdigit():
+                    device_pool = analog_line_access_dp
                 else:
-                    output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
-                    write_data_to_output.write_data_to_output(output_filepath, row)
-                    data_list.append('---None in datalist, ' + element + ' is None')
-                    write_data_to_output.write_data_to_output(output_filepath, data_list)
-                    write_data_to_output.write_data_to_output(output_filepath, '\n')
-                    count_unassociated += 1
-                    continue
+                    device_pool = get_pt_dp_by_operator_name.get_device_pool_by_operator_name(operator_name)
 
-            # записывает лист в выходной файл
-            write_data_to_output.write_data_to_output(output_filepath, data_list)
-            print(data_list)
-            if row[4] == '7811':
-                count_7811 += 1
-            if row[4] == '7821':
-                count_7821 += 1
-            if row[4] == '8851':
-                count_8851 += 1
+                short_number = row[7] + row[1]
+
+                # определяет имя пользователя ad (из справочника всех пользователей)
+                owner_user_id = (get_ad_user.get_ad_user(short_number, user_list))
+
+                line_description = initials
+                alerting_name = initials
+                asci_diaplay = ascii_alerting_name = (translit(initials, 'ru', reversed=True))
+                directory_number = row[8] + row[1]
+
+                # формируем CFA номер
+                if use_site_prefix_in_CFA_destination == 'y':
+                    forward_all_destination = forward_all_destination_prefix + row[8] + str(row[1])
+                if use_site_prefix_in_CFA_destination == 'n':
+                    forward_all_destination = forward_all_destination_prefix + str(row[1])
+
+                display = initials
+
+                # проверяем надо ли показывать line text label на телефоне, формируем line_text_label
+                if show_line_text_label == 'y':
+                    line_text_label = row[1].rstrip('\n')
+                else:
+                    line_text_label = ''
+
+                # определяет выходной файл исходя из модели телфона во входных данных
+                output_filepath = '.\\output\\' + output_filename_prefix + 'phones_' + row[4] + '.csv'
+
+                # собирает данные для записи в лист
+                data_list = [mac_address, description, device_pool, owner_user_id, line_description, alerting_name,
+                             ascii_alerting_name, directory_number, forward_all_destination, display, asci_diaplay,
+                             line_text_label, rdp_css, rdp_css, rdp_css]
+
+                # проверяет содерждит ли какое-либо из полей None
+                if check_data_list_contains_none.check_data_list_contains_none(data_list):
+                    element = check_data_list_contains_none.get_none_item(header, data_list)
+                    # если пользователь ad неопределен записывает лист в выходной файл
+                    if element == 'OWNER USER ID':
+                        element = 'OWNER USER ID'
+                    # если неопределен любой другой стобец - записывает в лог
+                    else:
+                        output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
+                        write_data_to_output.write_data_to_output(output_filepath, row)
+                        data_list.append('---None in datalist, ' + element + ' is None')
+                        write_data_to_output.write_data_to_output(output_filepath, data_list)
+                        write_data_to_output.write_data_to_output(output_filepath, '\n')
+                        count_unassociated += 1
+                        continue
+
+                # записывает лист в выходной файл
+                write_data_to_output.write_data_to_output(output_filepath, data_list)
+                print(data_list)
+                if row[4] == '7811':
+                    count_7811 += 1
+                if row[4] == '7821':
+                    count_7821 += 1
+                if row[4] == '8851':
+                    count_8851 += 1
+
+            else:
+                break
 
     # выводит статистику по завершении работы
     print('\n')
