@@ -55,14 +55,13 @@ while True:
 
     elif selection == '4':
         # показываем подменю
-        tranform_translate.worker()
-        # if show_submenu.show_translate_submenu():
-        #     print("Constructing translation and transformation files...")
-        #     try:
-        #         # вызываем модуль для обработки данных
-        #         tranform_translate.worker()
-        #     except Exception as e:
-        #         print(e)
+        if show_submenu.show_translate_submenu():
+            print("Constructing translation and transformation files...")
+            try:
+                # вызываем модуль для обработки данных
+                tranform_translate.worker()
+            except Exception as e:
+                print(e)
 
     elif selection == '5':
         # показываем подменю
