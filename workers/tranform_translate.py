@@ -195,7 +195,7 @@ def worker():
             description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' \
                           + site_description
             if len(description) >= 50:
-                description = + str(row[8]) + str(row[1]) + ' /' + initials + ' ' + site_description
+                description = str(row[8]) + str(row[1]) + ' /' + initials + ' ' + site_description
 
             # определяем констнты
             numbering_plan = route_filter = calling_party_transformation_mask = discard_digits = \

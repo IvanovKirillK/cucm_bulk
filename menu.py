@@ -55,13 +55,14 @@ while True:
 
     elif selection == '4':
         # показываем подменю
-        if show_submenu.show_translate_submenu():
-            print("Constructing translation and transformation files...")
-            try:
-                # вызываем модуль для обработки данных
-                tranform_translate.worker()
-            except Exception as e:
-                print(e)
+        tranform_translate.worker()
+        # if show_submenu.show_translate_submenu():
+        #     print("Constructing translation and transformation files...")
+        #     try:
+        #         # вызываем модуль для обработки данных
+        #         tranform_translate.worker()
+        #     except Exception as e:
+        #         print(e)
 
     elif selection == '5':
         # показываем подменю
@@ -120,7 +121,4 @@ while True:
         #TODO RDP Cyrylic symbols coding
         #TODO check input files for formating
         #TODO show abonents by operators function
-
-        #TODO block outbound calling CSS
-        #TODO check phone model present in input_data
 
