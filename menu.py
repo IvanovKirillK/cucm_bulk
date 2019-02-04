@@ -117,7 +117,4 @@ while True:
         #TODO add docker CD pipeline
         #TODO добавить логирование
 
-        #TODO RDP Cyrylic symbols coding
-        #TODO check input files for formating
-        #TODO show abonents by operators function
 
