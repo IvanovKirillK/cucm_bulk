@@ -15,7 +15,7 @@ def check_internal_number(number):
 # Проверяет что префикс сайта не более 4 и не менее 2 символов
 def check_code(code):
     try:
-        if code.isdigit() and (2 <= len(code) <= 4):
+        if code.isdigit() and (2 <= len(code) <= 6):
             return True
         else:
             print('Check following site_prefix:', code)

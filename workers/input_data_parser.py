@@ -17,6 +17,7 @@ use_site_prefix_in_CFA_destination = config.get('vars', 'use_site_prefix_in_CFA_
 rdp_css = config.get('vars', 'rdp_css')
 show_line_text_label = config.get('vars', 'show_line_text_label')
 analog_line_access_dp = config.get('vars', 'analog_line_access_dp')
+site_name = config.get('vars', 'site_name')
 
 
 # Основная фунекция модуля, тут происходит вызов тасков и основная работа
@@ -43,7 +44,7 @@ def worker():
     readcsv = csv.reader(file, delimiter=',')
 
     # загружает в память лист всех пользователей ad из справочника
-    user_list=get_all_ad_users.get_all_ad_users()
+    user_list = get_all_ad_users.get_all_ad_users()
 
     # формирует заголовок выходного файла
     header = ['MAC ADDRESS', 'DESCRIPTION', 'DEVICE POOL', 'OWNER USER ID', 'LINE DESCRIPTION  1',
@@ -78,7 +79,7 @@ def worker():
             namelist = check_full_name.check_full_name(name)
 
             # проверяет input_data
-            if (check_input_data.check_internal_number(row[1]) and check_input_data.check_code(row[7])  \
+            if (check_input_data.check_internal_number(row[1]) and check_input_data.check_code(row[7])
                     and check_input_data.check_code(row[8]) and check_input_data.check_model(row[4])):
 
                 # получает инициалы из ФИО
@@ -86,11 +87,11 @@ def worker():
 
                 # определяет строку для записи в файл
                 mac_address = ''
-                description = initials + ' ' + get_site_desc.get_site_desc(site_description)
+                description = initials + ' ' + get_site_desc.get_site_desc(site_description) + ' ' + site_name
                 out_number = (get_normalized_number.get_normalized_number(row[6]))
                 operator_name = get_operator_name.get_operator_name(out_number, list_codes)
 
-                #определяет device pool
+                # определяет device pool
                 if row[9].isdigit():
                     device_pool = analog_line_access_dp
                 else:
