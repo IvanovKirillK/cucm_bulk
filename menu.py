@@ -1,5 +1,5 @@
 from workers import input_data_parser, operator_list, pickup, rd_rdp, tranform_translate, update_user, backup, clear, \
-    operator_abonents_list
+    operator_abonents_list, combine
 from tasks import show_submenu
 
 # определяем сисок пунктов меню
@@ -13,6 +13,7 @@ menu['7'] = "Show list of phone_numbers and operator names from input data"
 menu['8'] = "Show list of operators on the site"
 menu['9'] = "Backup input and output files"
 menu['10'] = "Clear input and output directories"
+menu['11'] = "Combine phone files"
 menu['0'] = "Exit"
 
 # в цикле выводим пункты меню
@@ -104,6 +105,15 @@ while True:
             clear.worker()
         except Exception as e:
             print(e)
+
+    elif selection == '11':
+        print("Combine...")
+        try:
+            # вызываем модуль для обработки данных
+            combine.worker()
+        except Exception as e:
+            print(e)
+
 
     # завершает работу ПО
     elif selection == '0':
