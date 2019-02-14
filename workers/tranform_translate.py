@@ -14,6 +14,7 @@ output_filename_prefix = config.get('vars', 'output_filename_prefix')
 analog_line_access_pt = config.get('vars', 'analog_line_access_pt')
 check_inbound_group_number = config.get('vars', 'check_inbound_group_number')
 check_outbound_group_number = config.get('vars', 'check_outbound_group_number')
+site_name = config.get('vars', 'site_name')
 
 # worker - в нем делется вся работа
 def worker():
@@ -125,7 +126,7 @@ def worker():
         # формируем description
         description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
         if len(description) >= 50:
-            description = operator_name + ' /' + initials + ' ' + site_description
+            description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_name
 
         # определяем маску по оператору (а оператора по номеру)
         calling_party_transformation_mask = \
@@ -195,7 +196,7 @@ def worker():
             description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' \
                           + site_description
             if len(description) >= 50:
-                description = str(row[8]) + str(row[1]) + ' /' + initials + ' ' + site_description
+                description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' + site_name
 
             # определяем констнты
             numbering_plan = route_filter = calling_party_transformation_mask = discard_digits = \
