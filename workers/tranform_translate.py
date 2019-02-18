@@ -123,7 +123,7 @@ def worker():
         # получаем фамилию и инициалы
         initials = get_initials.get_initials_from_string(row[0])
 
-        # формируем description
+        # формируем description234
         description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
         if len(description) >= 50:
             if len(str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_name) <= 50:
