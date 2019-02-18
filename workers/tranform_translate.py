@@ -126,7 +126,12 @@ def worker():
         # формируем description
         description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
         if len(description) >= 50:
-            description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_name
+            if len(str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_name) <= 50:
+                description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_name
+            elif len(str(out_number) + ' /' + operator_name + ' /' + initials) <= 50:
+                description = str(out_number) + ' /' + operator_name + ' /' + initials
+            elif len(str(out_number) + ' /' + operator_name) <= 50:
+                description = str(out_number) + ' /' + operator_name
 
         # определяем маску по оператору (а оператора по номеру)
         calling_party_transformation_mask = \
@@ -196,7 +201,12 @@ def worker():
             description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' \
                           + site_description
             if len(description) >= 50:
-                description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' + site_name
+                if len('/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' + site_name) <= 50:
+                    description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' + site_name
+                elif len('/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials) <= 50:
+                    description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials
+                elif len('/' + operator_name + ' /' + str(row[8]) + str(row[1])) <= 50:
+                    description = '/' + operator_name + ' /' + str(row[8]) + str(row[1])
 
             # определяем констнты
             numbering_plan = route_filter = calling_party_transformation_mask = discard_digits = \
