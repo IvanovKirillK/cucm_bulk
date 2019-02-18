@@ -123,14 +123,14 @@ def worker():
         # получаем фамилию и инициалы
         initials = get_initials.get_initials_from_string(row[0])
 
-        # формируем description234
+        # формируем description
         description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_description
         if len(description) >= 50:
             if len(str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_name) <= 50:
                 description = str(out_number) + ' /' + operator_name + ' /' + initials + ' ' + site_name
             elif len(str(out_number) + ' /' + operator_name + ' /' + initials) <= 50:
                 description = str(out_number) + ' /' + operator_name + ' /' + initials
-            elif len(str(out_number) + ' /' + operator_name) <= 50:
+            else:
                 description = str(out_number) + ' /' + operator_name
 
         # определяем маску по оператору (а оператора по номеру)
@@ -205,7 +205,7 @@ def worker():
                     description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' + site_name
                 elif len('/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials) <= 50:
                     description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials
-                elif len('/' + operator_name + ' /' + str(row[8]) + str(row[1])) <= 50:
+                else:
                     description = '/' + operator_name + ' /' + str(row[8]) + str(row[1])
 
             # определяем констнты
