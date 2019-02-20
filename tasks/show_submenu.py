@@ -17,6 +17,7 @@ check_outbound_group_number = config.get('vars', 'check_outbound_group_number')
 show_line_text_label = config.get('vars', 'show_line_text_label')
 analog_line_access_dp = config.get('vars', 'analog_line_access_dp')
 site_name = config.get('vars', 'site_name')
+use_operator_pt_name_in_translation = config.get('vars', 'use_operator_pt_name_in_translation')
 
 
 def show_input_parser_submenu():
@@ -149,6 +150,7 @@ def show_translate_submenu():
     print('Config options: analog_line_access_pt - ', analog_line_access_pt)
     print('Config options: check_inbound_group_number - ', check_inbound_group_number)
     print('Config options: check_outbound_group_number - ', check_outbound_group_number)
+    print('Config options: use_operator_pt_name_in_translation - ', use_operator_pt_name_in_translation)
     print('Output: following files will be generated - ', '.\\output\\' + 'callingpartytransparent' + '.csv')
     print('Output: following files will be generated - ', '.\\output\\' + 'translationpattern' + '.csv')
     print('Output: following files will be generated - ', '.\\output\\' + output_filename_prefix + 'import_transform' + '.tar')

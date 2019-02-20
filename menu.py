@@ -127,4 +127,6 @@ while True:
         #TODO add docker CD pipeline
         #TODO добавить логирование
 
+        #TODO pt_sys_Incomming in translattions
+        #TODO Sync directories
 

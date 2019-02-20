@@ -15,6 +15,7 @@ analog_line_access_pt = config.get('vars', 'analog_line_access_pt')
 check_inbound_group_number = config.get('vars', 'check_inbound_group_number')
 check_outbound_group_number = config.get('vars', 'check_outbound_group_number')
 site_name = config.get('vars', 'site_name')
+use_operator_pt_name_in_translation = config.get('vars', 'use_operator_pt_name_in_translation')
 
 # worker - в нем делется вся работа
 def worker():
@@ -196,7 +197,15 @@ def worker():
             # получаем имя оператора по входящему номеру
             operator_name = get_operator_name.get_operator_name(in_number, list_codes)
             translation_pattern = in_number
-            route_partition = 'Pt_SYS_PSTN_Incoming'
+
+            # определяем название партиции
+            if use_operator_pt_name_in_translation == 'y':
+                route_partition = get_pt_dp_by_operator_name.get_partition_by_operator_name(operator_name)
+            elif use_operator_pt_name_in_translation == 'n':
+                route_partition = 'Pt_SYS_PSTN_Incoming'
+            else:
+                route_partition = 'Pt_SYS_PSTN_Incoming'
+
             initials = get_initials.get_initials_from_string(row[0])
             description = '/' + operator_name + ' /' + str(row[8]) + str(row[1]) + ' /' + initials + ' ' \
                           + site_description
