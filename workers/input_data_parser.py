@@ -145,6 +145,15 @@ def worker():
                         count_unassociated += 1
                         continue
 
+                if len(directory_number) != 7:
+                    output_filepath = '.\\output\\' + output_filename_prefix + 'unassociated_dn' + '.csv'
+                    write_data_to_output.write_data_to_output(output_filepath, row)
+                    data_list.append('---Directory number is too short, ' + directory_number)
+                    write_data_to_output.write_data_to_output(output_filepath, data_list)
+                    write_data_to_output.write_data_to_output(output_filepath, '\n')
+                    count_unassociated += 1
+                    continue
+
                 # записывает лист в выходной файл
                 write_data_to_output.write_data_to_output(output_filepath, data_list)
                 print(data_list)
