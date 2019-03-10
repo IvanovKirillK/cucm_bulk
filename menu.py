@@ -1,6 +1,6 @@
 from workers import input_data_parser, operator_list, pickup, rd_rdp, tranform_translate, update_user, backup, clear, \
     operator_abonents_list, combine
-from tasks import show_submenu, ch
+from tasks import show_submenu, change_translit
 
 # определяем сисок пунктов меню
 menu = {}
@@ -113,11 +113,6 @@ while True:
             combine.worker()
         except Exception as e:
             print(e)
-
-    elif selection == '12':
-        change_translit.change_translit('Hello')
-
-
 
     # завершает работу ПО
     elif selection == '0':

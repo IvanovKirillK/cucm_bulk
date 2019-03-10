@@ -4,7 +4,8 @@ import re
 from transliterate import translit
 from tasks import check_full_name, get_initials, get_all_ad_users, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, get_ad_user, check_file_exists, get_pt_dp_by_operator_name, \
-    check_data_list_contains_none, get_phone_model_list, check_empty_line, get_site_desc, check_input_data
+    check_data_list_contains_none, get_phone_model_list, check_empty_line, get_site_desc, check_input_data, \
+    change_translit
 
 # Определяет путь к конфиг файлу, загружает конфигурацию
 config = configparser.ConfigParser()
@@ -104,7 +105,8 @@ def worker():
 
                 line_description = initials
                 alerting_name = initials
-                asci_diaplay = ascii_alerting_name = (translit(initials, 'ru', reversed=True))
+                asci_diaplay = ascii_alerting_name = change_translit.change_translit(translit(initials, 'ru',
+                                                                                    reversed=True)).replace("'","")
                 directory_number = row[8] + row[1]
 
                 # формируем CFA номер
