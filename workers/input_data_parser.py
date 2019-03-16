@@ -94,7 +94,8 @@ def worker():
 
                 # определяет device pool
                 if row[9].isdigit():
-                    device_pool = analog_line_access_dp
+                    #device_pool = analog_line_access_dp
+                    device_pool = get_pt_dp_by_operator_name.get_device_pool_by_analog_prefix(operator_name)
                 else:
                     device_pool = get_pt_dp_by_operator_name.get_device_pool_by_operator_name(operator_name)
 
