@@ -18,6 +18,8 @@ def get_operator_name(number, list_codes):
                 if oper in config['oper_name']:
                     oper = config['oper_name'][oper]
                 return oper
+        else:
+            return default_site_operator
 
 
 def get_full_operator_name(number, list_codes):
