@@ -196,7 +196,8 @@ def worker():
         else:
             # получаем имя оператора по входящему номеру
             operator_name = get_operator_name.get_operator_name(in_number, list_codes)
-            translation_pattern = in_number
+            #translation_pattern = in_number
+            translation_pattern = '*' + in_number
 
             # определяем название партиции
             if use_operator_pt_name_in_translation == 'y':
