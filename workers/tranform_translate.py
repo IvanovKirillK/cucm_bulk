@@ -4,7 +4,8 @@ import distutils.file_util
 import os
 from tasks import get_initials, get_operator_name, get_normalized_number, \
     get_list_of_codes, write_header, write_data_to_output, check_file_exists, get_list_of_group_numbers, \
-    get_pt_dp_by_operator_name, check_empty_line, get_calling_party_transformation_mask, write_tar
+    get_pt_dp_by_operator_name, check_empty_line, get_calling_party_transformation_mask, write_tar, \
+    get_prefix_digit_outgoing
 
 # читает конфиг
 config = configparser.ConfigParser()
@@ -100,7 +101,8 @@ def worker():
             route_partition = analog_line_access_pt
 
             # определяем префикс для исходящих вызовов
-            prefix_digit_outgoing_call = '000' + row[8] + row[9]
+            #prefix_digit_outgoing_call = '000' + row[8] + row[9]
+            prefix_digit_outgoing_call = get_prefix_digit_outgoing.get_prefix_digit_outgoing(row[1], row[8], row[9])
 
         else:
             # проверяем исходящий номер на наличие в списке групповых и флаг проверки установлен в y
