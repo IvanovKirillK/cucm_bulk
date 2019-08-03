@@ -27,6 +27,7 @@ def worker():
     # счетчики для вывода статистики по завершению работы
     count_7811 = 0
     count_7821 = 0
+    count_8845 = 0
     count_8851 = 0
     count_input = 0
     count_unassociated = 0
@@ -164,6 +165,8 @@ def worker():
                     count_7811 += 1
                 if row[4] == '7821':
                     count_7821 += 1
+                if row[4] == '8845':
+                    count_8845 += 1
                 if row[4] == '8851':
                     count_8851 += 1
 
@@ -177,8 +180,9 @@ def worker():
     print('total: input ' + str(count_input) + ' records')
     print('total: 7811 ' + str(count_7811) + ' phones')
     print('total: 7821 ' + str(count_7821) + ' phones')
+    print('total: 8845 ' + str(count_8845) + ' phones')
     print('total: 8851 ' + str(count_8851) + ' phones')
-    print('total: ready to upload ' + str(count_7811 + count_7821 + count_8851) + ' phones')
+    print('total: ready to upload ' + str(count_7811 + count_7821 + count_8845 + count_8851) + ' phones')
     print('total: unassociated dn ' + str(count_unassociated) + ' phones')
     print(30 * '#')
     print('\n')
